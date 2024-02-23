@@ -418,6 +418,89 @@ if (isset($_SESSION["admin"])) {
                                     </div>
                                 </div>
 
+                                <div class="col-12">
+                                    <div class="row" id="sort">
+
+                                        <div class="offset-1 col-10 text-center">
+                                            <div class="row justify-content-center">
+
+                                                <?php
+
+                                                $top_user_mail = Database::search("SELECT `user_email`, COUNT(`user_email`) AS top_user FROM `invoice` GROUP BY user_email ORDER BY top_user DESC LIMIT 1;");
+                                                $top_user_mail_data = $top_user_mail->fetch_assoc();
+
+                                                $select_rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $top_user_mail_data["user_email"] . "' ");
+                                                $user_data = $select_rs->fetch_assoc();
+
+                                                ?>
+
+                                                <!-- card -->
+                                                <div class="col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded mx-2" style="width: 18rem;">
+
+                                                    <?php
+                                                    $img_rs = Database::search("SELECT * FROM `user_img` WHERE `user_email` = '" . $user_data["email"] . "'");
+                                                    $img_num = $img_rs->num_rows;
+                                                    $img_data = $img_rs->fetch_assoc();
+
+                                                    if ($img_num == 1) {
+                                                    ?>
+                                                        <img src="<?php echo $img_data["path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <img src="resources/user.svg" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                    <?php
+                                                    }
+                                                    ?>
+
+                                                    <div class="card-body p-3">
+
+                                                        <div class="col-12 text-center mt-3 text-bg-info">
+                                                            <span class=" fw-bold text-dark p-1 "><?php echo $user_data["email"]; ?></span>
+                                                        </div>
+
+                                                        <div class=" col-12 text-start ms-4 mt-1">
+                                                            <span class=" fw-bold text-dark p-1">Phone- <?php echo $user_data["contact_no"]; ?></span>
+                                                        </div>
+
+                                                        <div class=" col-12 text-start ms-4 mt-1">
+                                                            <span class=" fw-bold text-dark p-1 ">Join Date- <?php echo $user_data["join_date"]; ?></span>
+                                                        </div>
+
+                                                        <div class=" col-12 text-center mt-1">
+
+                                                            <?php
+                                                            if ($user_data["status"] == 2) {
+                                                            ?>
+                                                                <span class=" fw-bold text-decoration-none text-danger fs-6 p-1 ">Blocked</span>
+                                                            <?php
+                                                            } else {
+                                                            ?>
+                                                                <span class=" fw-bold text-decoration-none text-success fs-6 p-1 ">Active</span>
+                                                            <?php
+                                                            }
+                                                            ?>
+
+                                                        </div>
+
+                                                        <div class=" col-12 text-center mt-3">
+                                                            <a href="singleuser.php?e=<?php echo urlencode($user_data['email']); ?>" class=" col-12 btn btn-outline-warning border-3 fw-bold text-black">View</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <!-- card -->
+
+                                                <?php
+
+
+                                                ?>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
@@ -425,8 +508,6 @@ if (isset($_SESSION["admin"])) {
 
                         <div class="col-12 col-lg-9 d-flex justify-content-center d-none">
                             <div class=" row align-items-center">
-
-
 
                                 <div class=" col-12">
                                     <div class=" row gx-3">
