@@ -1,0 +1,18 @@
+.poster-img-1 {
+    height: 600px;
+    background-repeat: no-repeat;
+}
+
+.abg{
+    background-image: url("resources/abg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-lessred{
+    background-color: rgba(255, 61, 61, 0.444);
+}
+
+.bg-green{
+    background-color: rgba(0, 183, 255, 0.603);
+}

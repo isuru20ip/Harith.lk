@@ -1,0 +1,79 @@
+<?php
+
+require "conection.php";
+
+$cat = $_POST["cat"];
+// $query = "SELECT * FROM `product` WHERE `category_id` = '".$cat."' ";
+
+?>
+
+<div class=" row">
+    <div class=" offset-lg-1 col-12 col-lg-10 text-center">
+        <div class=" row">
+
+            <div class="offset-1 col-10 text-center">
+                <div class="row justify-content-center">
+
+
+                    <?php
+
+                    $product_rs = Database::search("SELECT * FROM `product` WHERE `category_id` = '" . $cat . "'");
+                    $product_num = $product_rs->num_rows;
+
+                    for ($i = 0; $i < $product_num; $i++) {
+                        $product_data = $product_rs->fetch_assoc();
+
+                        $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
+                        $img_data = $img_rs->fetch_assoc();
+
+                    ?>
+
+                        <!-- card -->
+                        <!-- <spin> -->
+
+
+                        <div class=" col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded" style="width: 18rem;">
+
+                            <img src="<?php echo $img_data["p_path"] ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+
+                            <div class="card-body ms-0 m-0 ">
+
+                                <div class=" col-12 text-center mt-3">
+                                    <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
+                                    <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
+                                </div>
+
+                                <div class=" col-12 text-center mt-3">
+                                    <span class=" fw-bold text-decoration-none text-dark p-1 "> <?php echo $product_data["title"]; ?> </span>
+                                </div>
+
+                                <div class=" col-12 text-center">
+                                    <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
+
+                                    <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4">
+                                        <img src="resources/wish.svg" />
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- <spin> -->
+                        <!-- card -->
+
+                    <?php
+                    }
+
+                    ?>
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
