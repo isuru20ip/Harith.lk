@@ -47,7 +47,7 @@ if (isset($_SESSION["admin"])) {
                                     <div class="row">
 
                                         <div class="col-12">
-                                            <label class="form-label fw-bold fs-3">Sort Products</label>
+                                            <label class="form-label fw-bold fs-3">Sort User</label>
                                         </div>
                                         <div class="col-11">
                                             <div class="row">
@@ -213,9 +213,10 @@ if (isset($_SESSION["admin"])) {
 
                                                 <div class="card-body p-3">
 
-                                                    <div class=" col-12 text-center mt-3 p-1 border border-1 border-primary rounded-5 text-bg-info">
-                                                        <span class=" fw-bold fs-5 text-dark p-1 "><?php echo $user_data["email"]; ?></span>
+                                                    <div class="col-12 text-center mt-3 text-bg-info">
+                                                        <span class=" fw-bold text-dark p-1 "><?php echo $user_data["email"]; ?></span>
                                                     </div>
+
 
                                                     <div class=" col-12 text-start ms-4 mt-1">
                                                         <span class=" fw-bold text-decoration-none text-dark p-1 ">Phone- <?php echo $user_data["contact_no"]; ?></span>
