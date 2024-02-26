@@ -249,7 +249,7 @@ if (isset($_SESSION["admin"])) {
 
                                 <br />
 
-                                <div class="col-12 bg-white p-2 rounded-3 mb-5">
+                                <div class="col-12 bg-white p-2 rounded-3 mb-3">
                                     <div class="row g-2">
 
                                         <div class="col-4 px-1">
@@ -418,24 +418,27 @@ if (isset($_SESSION["admin"])) {
                                     </div>
                                 </div>
 
+                                <!-- top-items -->
                                 <div class="col-12">
-                                    <div class="row" id="sort">
+                                    <div class="row ">
 
-                                        <div class="offset-1 col-10 text-center">
-                                            <div class="row justify-content-center">
+                                        <div class="text-white fw-bold mt-2 mb-3">
+                                            <h2 class="fw-bold">Top Items</h2>
+                                        </div>
+
+                                        <div class="col-12 d-flex">
+                                            <div class="row g-3">
 
                                                 <?php
-
-                                                $top_user_mail = Database::search("SELECT `user_email`, COUNT(`user_email`) AS top_user FROM `invoice` GROUP BY user_email ORDER BY top_user DESC LIMIT 1;");
+                                                $top_user_mail = Database::search("SELECT `user_email`, SUM(`total`) AS `total` FROM `invoice` GROUP BY `user_email` ORDER BY `total` DESC ");
                                                 $top_user_mail_data = $top_user_mail->fetch_assoc();
-
                                                 $select_rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $top_user_mail_data["user_email"] . "' ");
                                                 $user_data = $select_rs->fetch_assoc();
-
                                                 ?>
 
                                                 <!-- card -->
-                                                <div class="col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded mx-2" style="width: 18rem;">
+                                                
+                                                <div class="col-6 mb-2 border border-1 bg-body-tertiary rounded mx-1" style="width: 18rem;">
 
                                                     <?php
                                                     $img_rs = Database::search("SELECT * FROM `user_img` WHERE `user_email` = '" . $user_data["email"] . "'");
@@ -452,7 +455,6 @@ if (isset($_SESSION["admin"])) {
                                                     <?php
                                                     }
                                                     ?>
-
                                                     <div class="card-body p-3">
 
                                                         <div class="col-12 text-center mt-3 text-bg-info">
@@ -482,116 +484,66 @@ if (isset($_SESSION["admin"])) {
                                                             ?>
 
                                                         </div>
-
                                                         <div class=" col-12 text-center mt-3">
                                                             <a href="singleuser.php?e=<?php echo urlencode($user_data['email']); ?>" class=" col-12 btn btn-outline-warning border-3 fw-bold text-black">View</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <?php
+                                                $product_rs = Database::search("SELECT `product_id`, SUM(`iqty`) AS `qty` FROM `invoice` GROUP BY `product_id` ORDER BY `qty` DESC");
+                                                $top_rs = $product_rs->fetch_assoc();
+                                                $select_rs = Database::search("SELECT * FROM `product` WHERE `id` = '" . $top_rs['product_id'] . "'");
+                                                $product_data = $select_rs->fetch_assoc();
+                                                ?>
+
+                                                <!-- card -->
+                                                <div class="col-6 mb-2 border border-1 bg-body-tertiary rounded " style="width: 18rem;">
+
+                                                    <?php
+                                                    $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
+                                                    $img_data = $img_rs->fetch_assoc();
+                                                    ?>
+
+                                                    <img src="<?php echo $img_data["p_path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                    <div class="card-body p-3">
+
+                                                        <div class=" col-12 text-center mt-3">
+                                                            <span class=" fw-bold text-decoration-none text-dark p-1 "><?php echo $product_data["title"]; ?></span>
+                                                        </div>
+
+                                                        <div class=" col-12 text-center">
+                                                            <span class="card-text text-danger fw-bold">LKR.<?php echo $product_data["price"]; ?>.00</span> &nbsp; <span class="card-text text-danger fw-bold">(Qty:<?php echo $product_data["qty"]; ?>)</span><br />
+                                                        </div>
+
+                                                        <div class=" col-12 text-center mt-3">
+                                                            <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" onclick="deleteProduct(<?php echo $product_data['id']; ?>)">Delate</a>
+                                                            <a href="<?php echo "updateproduct.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold" onclick="sendId(<?php echo $product_data['id']; ?>);">Update</a>
+                                                        </div>
+
+                                                        <div class=" col-12 mt-3 text-center form-switch">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="fd<?php echo $product_data["id"]; ?>" onchange="changeStatus(<?php echo $product_data['id']; ?>);" <?php if ($product_data["status_status_id"] == 2) { ?> checked <?php } ?> />
+                                                            <?php
+                                                            if ($product_data["status_status_id"] == 1) {
+                                                            ?><label class="form-check-label fw-bold text-primary"> Active </label><?php
+                                                                                                                                } else {
+                                                                                                                                    ?><label class="form-check-label fw-bold text-danger"> Deactivate </label><?php
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                                ?>
+
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <!-- card -->
 
-                                                <?php
-
-
-                                                ?>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                 </div>
-
+                                <!-- Top-Product -->
                             </div>
                         </div>
-
-
-
-                        <div class="col-12 col-lg-9 d-flex justify-content-center d-none">
-                            <div class=" row align-items-center">
-
-                                <div class=" col-12">
-                                    <div class=" row gx-3">
-
-                                        <div class=" col-12 text-black text-center fw-bold fs-3 px-2 py-0 bg-body-tertiary rounded-3 rounded-bottom-0 ">
-                                            <label class=" form-label">Status</label>
-                                        </div>
-
-                                        <div class=" col-12 text-black text-center  fs-5 p-2 pb-0 pt-0 bg-light rounded-3 rounded-top-0">
-                                            <table class="table">
-
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Title</th>
-                                                        <th scope="col">Description</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Most Selling Item</td>
-                                                        <?php
-                                                        $most_item = Database::search("SELECT product.title,product_id, COUNT(product_id) AS total_orders
-                                                            FROM invoice INNER JOIN product ON product.id = invoice.product_id
-                                                            GROUP BY product_id
-                                                            ORDER BY total_orders DESC
-                                                            LIMIT 1");
-                                                        $most_item_data = $most_item->fetch_assoc();
-                                                        ?>
-                                                        <td><?php echo $most_item_data["title"] ?></td>
-
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Top User</td>
-                                                        <?php
-                                                        $top_user_rs = Database::search("SELECT `user_email`, COUNT(`user_email`) AS top_user FROM `invoice` GROUP BY user_email ORDER BY top_user DESC LIMIT 1;");
-                                                        $top_user_data = $top_user_rs->fetch_assoc()
-                                                        ?>
-                                                        <td><?php echo $top_user_data["user_email"];  ?></td>
-
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Selles</td>
-                                                        <?php
-                                                        $sell_rs = Database::search("SELECT SUM(`iqty`) AS sell FROM `invoice`
-                                                            WHERE MONTH(`date`) = 02 AND YEAR(`date`) = 2024;
-                                                            
-                                                            ");
-                                                        $sell_data = $sell_rs->fetch_assoc()
-                                                        ?>
-                                                        <td><?php echo $sell_data["sell"] ?></td>
-
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>Monthly Income</td>
-                                                        <?php
-
-                                                        $year = date("Y");
-                                                        $month = date("m");
-
-                                                        $income_rs = Database::search("SELECT SUM(`total`) AS income
-                                                            FROM `invoice`
-                                                            WHERE MONTH(`date`) = $month AND YEAR(`date`) = $year ");
-                                                        $income_data = $income_rs->fetch_assoc()
-                                                        ?>
-                                                        <td><?php echo "Rs: " . $income_data["income"] ?></td>
-
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
 
                     </div>
 
