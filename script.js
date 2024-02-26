@@ -697,14 +697,17 @@ function changeProductImage() {
     images.onchange = function () {
         var file_count = images.files.length;
 
-        if (file_count == 1) {
+        if (file_count <= 3) {
 
-            var file = this.files[0];
-            var url = window.URL.createObjectURL(file);
-            document.getElementById("i").src = url;
+            for (var x = 0; x < file_count; x++) {
+
+                var file = this.files[x];
+                var url = window.URL.createObjectURL(file);
+                document.getElementById("i" + x).src = url;
+            }
 
         } else {
-            lert(file_count + " files uploaded. you are Proceed to upload only one file")
+            alert(file_count + " files. You are proceed to upload only 3 or less than 3 files.")
         }
     }
 }
