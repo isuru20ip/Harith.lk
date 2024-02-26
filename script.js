@@ -679,7 +679,7 @@ function addproduct() {
         if (r.readyState == 4 && r.status == 200) {
             var t = r.responseText;
 
-            if (t == '1') {
+            if (t == 'sucsess') {
                 alert("Product Added Successfully.");
                 window.location = "myproduct.php";
 
