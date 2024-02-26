@@ -43,22 +43,22 @@ if (isset($_SESSION["admin"])) {
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Product Name</label>
-                                <input type="text" class=" form-control border border-1 border-black" id="pname">
+                                <input type="text" class=" form-control border border-1 border-black" id="pname"/>
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Price </label>
-                                <input type="text" class=" form-control border border-1 border-black" id="price">
+                                <input type="text" class=" form-control border border-1 border-black" id="price"/>
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Qty </label>
-                                <input type="number" class=" form-control border border-1 border-black" min="1" id="qty">
+                                <input type="number" class=" form-control border border-1 border-black" min="1" id="qty"/>
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Delivery Fee </label>
-                                <input type="text" class=" form-control border border-1 border-black" id="dfee">
+                                <input type="text" class=" form-control border border-1 border-black" id="dfee"/>
                             </div>
 
                             <div class=" col-12 p-3">
@@ -66,7 +66,7 @@ if (isset($_SESSION["admin"])) {
 
                                 <div class="col-12">
                                     <select id="pcat" class=" form-select border border-1 border-black text-black">
-                                        <option value="0">Select Category</option>
+                                        <option value="4">Select Category</option>
 
                                         <?php
                                         $cat_rs = Database::search("SELECT * FROM `category`");
@@ -110,14 +110,20 @@ if (isset($_SESSION["admin"])) {
 
                             <div class="col-12">
 
-                                <div class="offset-lg-5 col-12 col-lg-6">
+                                <div class=" offset-md-3 col-12 col-lg-6 p-3">
                                     <div class="row">
 
                                         <div class=" col-12 col-lg-4 border border-primary rounded">
-                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i0">
+                                        </div>
+                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i1">
+                                        </div>
+                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i2">
                                         </div>
 
-                                        <input type="file" id="pimg" hidden>
+                                        <input type="file" id="pimg" multiple hidden>
                                     </div>
                                 </div>
 
