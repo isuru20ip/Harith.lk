@@ -110,14 +110,20 @@ if (isset($_SESSION["admin"])) {
 
                             <div class="col-12">
 
-                                <div class="offset-lg-5 col-12 col-lg-6">
+                                <div class=" offset-md-3 col-12 col-lg-6 p-3">
                                     <div class="row">
 
                                         <div class=" col-12 col-lg-4 border border-primary rounded">
-                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i0">
+                                        </div>
+                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i1">
+                                        </div>
+                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i2">
                                         </div>
 
-                                        <input type="file" id="pimg" hidden>
+                                        <input type="file" id="pimg" multiple hidden>
                                     </div>
                                 </div>
 
