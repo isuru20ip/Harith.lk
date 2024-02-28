@@ -28,15 +28,15 @@ if (empty($pname)) {
     echo ("enter the product description");
 } else {
 
-    // if ($qty >= 1) {
+    if ($qty >= 1) {
 
-    //     Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "', `status_status_id` = '1' WHERE `id` = '" . $pid . "'");
-    // } else {
+        Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "', `status_status_id` = '1' WHERE `id` = '" . $pid . "'");
+    } else {
 
-    //     Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
-    // }
+        Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
+    }
 
-    Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
+   // Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
 
     $product_id = Database::$connection->insert_id;
 

@@ -172,7 +172,7 @@ if (isset($_SESSION["admin"])) {
                                         $product_rs = Database::search("SELECT * FROM `product`");
                                         $product_num = $product_rs->num_rows;
 
-                                        $results_per_page = 3;
+                                        $results_per_page = 6;
                                         $number_of_page = ceil($product_num / $results_per_page);
 
                                         $page_rs = ($pageno - 1) * $results_per_page;
