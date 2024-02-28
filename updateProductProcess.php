@@ -28,55 +28,58 @@ if (empty($pname)) {
     echo ("enter the product description");
 } else {
 
-    if ($qty >= 1) {
+    // if ($qty >= 1) {
 
-        Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "', `status_status_id` = '1' WHERE `id` = '" . $pid . "'");
-    } else {
+    //     Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "', `status_status_id` = '1' WHERE `id` = '" . $pid . "'");
+    // } else {
 
-        Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
-    }
+    //     Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
+    // }
 
     Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
 
     $product_id = Database::$connection->insert_id;
 
-    if (isset($_FILES["pim"])) {
+    if (isset($_FILES["pim0"])) {
 
         $length = sizeof($_FILES);
 
-        if ($length == 1) {
+        if ($length <= 3) {
 
             $allowed_image_extentions = array("image/jpg", "image/jpeg", "image/png", "image/svg+xml");
 
-            $image_file = $_FILES["pim"];
-            $file_extention = $image_file["type"];
+            for ($i = 0; $i < $length; $i++) {
+                $image_file = $_FILES["pim".$i];
+                $file_extention = $image_file["type"];
 
-            if (in_array($file_extention, $allowed_image_extentions)) {
+                if (in_array($file_extention, $allowed_image_extentions)) {
 
-                $new_img_extention;
+                    $new_img_extention;
 
-                if ($file_extention == "image/jpg") {
-                    $new_img_extention = ".jpg";
-                } else if ($file_extention == "image/jpeg") {
-                    $new_img_extention = ".jpeg";
-                } else if ($file_extention == "image/png") {
-                    $new_img_extention = ".png";
-                } else if ($file_extention == "image/svg+xml") {
-                    $new_img_extention = ".svg";
+                    if ($file_extention == "image/jpg") {
+                        $new_img_extention = ".jpg";
+                    } else if ($file_extention == "image/jpeg") {
+                        $new_img_extention = ".jpeg";
+                    } else if ($file_extention == "image/png") {
+                        $new_img_extention = ".png";
+                    } else if ($file_extention == "image/svg+xml") {
+                        $new_img_extention = ".svg";
+                    }
+
+                    $file_name = "resources//user_img//" . $pname . uniqid() . $new_img_extention;
+                    move_uploaded_file($image_file["tmp_name"], $file_name);
+                    
+                    Database::iud("DELETE FROM `p_img` WHERE `product_id` = '".$pid."'");
+                    Database::iud("INSERT INTO `p_img` (`p_path`,`product_id`) VALUES ('".$file_name."','".$pid."');");
+
+                    echo (1);
+                } else {
+                    echo ("Not an allowed image type");
                 }
-
-                $file_name = "resources//user_img//" . $pname . uniqid() . $new_img_extention;
-                move_uploaded_file($image_file["tmp_name"], $file_name);
-
-                Database::iud("UPDATE `p_img` SET `p_path` = '" . $file_name . "' WHERE `product_id` = '" . $pid . "' ");
-
-                echo ("1");
-            } else {
-                echo ("Not an allowed image type");
             }
         } else {
             echo ("Invalid Image Count");
         }
     }
-    echo ("2");
+    echo (2);
 }

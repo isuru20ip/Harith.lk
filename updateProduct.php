@@ -116,25 +116,30 @@ if (isset($_SESSION["p"])) {
 
                             <div class="col-12">
 
-                                <div class="offset-lg-5 col-12 col-lg-6">
+                                <div class=" text-center">
                                     <div class="row">
 
                                         <?php
                                         $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE product_id = '" . $pid . "'");
                                         $pimg_num = $pimg_rs->num_rows;
-                                        $pimg_data = $pimg_rs->fetch_assoc();
+                                        
+                                        for ($i = 0; $i <3; $i++) {
+                                            $pimg_data = $pimg_rs->fetch_assoc();
                                         ?>
-
-                                        <div class=" col-12 col-lg-4 border border-primary rounded">
-                                            <?php if ($pimg_num == 1) {
-                                            ?><img src="<?php echo $pimg_data["p_path"]; ?>" class="img-fluid" style="width: 250px;" id="i"> <?php
-                                                                                                                                                } else {
-                                                                                                                                                    ?><img src="resources\addproductimg.svg" class="img-fluid" style="width: 250px;" id="i"><?php
-                                                                                                                                                } ?>
-
-                                        </div>
-
-                                        <input type="file" id="pimg" hidden>
+                                            <div class=" col-12 col-lg-4 border border-primary rounded">
+                                                <?php
+                                                if (isset($pimg_data["p_path"])) {
+                                                ?>
+                                                    <img src="<?php echo $pimg_data["p_path"]; ?>" class="img-fluid" style="width: 250px;" id="i<?php echo $i; ?>">
+                                                <?php
+                                                } else {
+                                                ?><img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i<?php echo $i; ?>"><?php
+                                                                                                                                } ?>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
+                                        <input type="file" id="pimg" multiple hidden>
                                     </div>
                                 </div>
 
