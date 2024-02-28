@@ -36,7 +36,7 @@ if (empty($pname)) {
         Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
     }
 
-   // Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
+    // Database::iud("UPDATE `product` SET `title` = '" . $pname . "', `description` = '" . $des . "' , `delivery_fee` = '" . $dfee . "' ,`qty` = '" . $qty . "' WHERE `id` = '" . $pid . "'");
 
     $product_id = Database::$connection->insert_id;
 
@@ -47,9 +47,10 @@ if (empty($pname)) {
         if ($length <= 3) {
 
             $allowed_image_extentions = array("image/jpg", "image/jpeg", "image/png", "image/svg+xml");
-
+            Database::iud("DELETE FROM `p_img` WHERE `product_id` = '" . $pid . "'");
             for ($i = 0; $i < $length; $i++) {
-                $image_file = $_FILES["pim".$i];
+
+                $image_file = $_FILES["pim" . $i];
                 $file_extention = $image_file["type"];
 
                 if (in_array($file_extention, $allowed_image_extentions)) {
@@ -68,11 +69,11 @@ if (empty($pname)) {
 
                     $file_name = "resources//user_img//" . $pname . uniqid() . $new_img_extention;
                     move_uploaded_file($image_file["tmp_name"], $file_name);
-                    
-                    Database::iud("DELETE FROM `p_img` WHERE `product_id` = '".$pid."'");
-                    Database::iud("INSERT INTO `p_img` (`p_path`,`product_id`) VALUES ('".$file_name."','".$pid."');");
 
-                    echo (1);
+
+                    Database::iud("INSERT INTO `p_img` (`p_path`,`product_id`) VALUES ('" . $file_name . "','" . $pid . "');");
+
+                    
                 } else {
                     echo ("Not an allowed image type");
                 }
@@ -80,6 +81,7 @@ if (empty($pname)) {
         } else {
             echo ("Invalid Image Count");
         }
+        echo (1);
     }
     echo (2);
 }
