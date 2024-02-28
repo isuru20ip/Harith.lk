@@ -44,7 +44,7 @@ if (empty($pname)) {
 
         $length = sizeof($_FILES);
 
-        if ($length == 1) {
+        if ($length <= 3) {
 
             $allowed_image_extentions = array("image/jpg", "image/jpeg", "image/png", "image/svg+xml");
 

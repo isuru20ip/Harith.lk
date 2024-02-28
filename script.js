@@ -774,7 +774,12 @@ function updateproduct() {
     f.append("dfee", dfree.value);
     // f.append("cat", category.value);
     f.append("des", desc.value);
-    f.append("pim", pimg.files[0]);
+
+    var file_count = pimg.files.length;
+
+    for (var x = 0; x < file_count; x++) {
+        f.append("pim" + x, pimg.files[x]);
+    }
 
     var r = new XMLHttpRequest();
     r.onreadystatechange = function () {
