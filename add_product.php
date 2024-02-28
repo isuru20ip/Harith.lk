@@ -24,13 +24,14 @@ if (isset($_SESSION["admin"])) {
     <body>
         <div class=" container-fluid ">
             <div class=" row">
-            <?php require "cpanal_head.php"; ?>
+
+                <?php require "cpanal_head.php"; ?>
+
                 <div class=" col-12 bg-secondary-subtle ">
                     <div class=" row">
 
                         <div class=" col-12">
                             <div class=" row">
-
                                 <div class=" col-12 text-center">
                                     <h3 class="fw-bold p-2 rounded-2 "> Add Product</h3>
                                 </div>
@@ -38,27 +39,27 @@ if (isset($_SESSION["admin"])) {
                             </div>
                         </div>
 
-                        <div class=" col-12 col-lg-6 border border-1 border-black rounded-3 bg-white">
+                        <div class=" col-12 col-lg-6 border border-1 border-black bg-white">
                             <!-- <div class=" row"> -->
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Product Name</label>
-                                <input type="text" class=" form-control border border-1 border-black" id="pname"/>
+                                <input type="text" class=" form-control border border-1 border-black" id="pname" />
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Price </label>
-                                <input type="text" class=" form-control border border-1 border-black" id="price"/>
+                                <input type="text" class=" form-control border border-1 border-black" id="price" />
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Qty </label>
-                                <input type="number" class=" form-control border border-1 border-black" min="1" id="qty"/>
+                                <input type="number" class=" form-control border border-1 border-black" min="1" id="qty" />
                             </div>
 
                             <div class=" col-12 p-3">
                                 <label class=" form-label fw-bold "> Delivery Fee </label>
-                                <input type="text" class=" form-control border border-1 border-black" id="dfee"/>
+                                <input type="text" class=" form-control border border-1 border-black" id="dfee" />
                             </div>
 
                             <div class=" col-12 p-3">
@@ -87,18 +88,15 @@ if (isset($_SESSION["admin"])) {
                         </div>
 
                         <!-- <div class=" row"> -->
-                        <div class=" col-12 col-lg-6 border border-1 border-black rounded-3 bg-white">
-
-                            <div class="col-12 text-center bg-secondary-subtle rounded-2">
-                                <label class="form-label fw-bold fs-4">Product Description</label>
-                            </div>
-                            <div class="col-12">
+                        <div class=" col-12 col-lg-6 border border-1 border-black bg-white">
+                            <label class="form-label fw-bold fs-4 ">Product Description</label>
+                            <div class="col-12 pb-3">
                                 <textarea cols="30" rows="19" class=" form-control" id="desc"></textarea>
                             </div>
                         </div>
 
                         <!-- <div class=" row"> -->
-                        <div class=" col-12 border border-1 border-black rounded-3">
+                        <div class=" col-12 border border-1 border-black">
 
                             <div class="col-12 text-center">
                                 <label class="form-label fw-bold fs-4">Product Images</label>
@@ -106,20 +104,20 @@ if (isset($_SESSION["admin"])) {
                         </div>
 
                         <!-- <div class=" row"> -->
-                        <div class=" col-12 border border-1 border-black rounded-3">
+                        <div class=" col-12 border border-1 border-black">
 
                             <div class="col-12">
 
                                 <div class=" offset-md-3 col-12 col-lg-6 p-3">
                                     <div class="row">
 
-                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                        <div class=" col-12 col-lg-4 border border-primary">
                                             <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i0">
                                         </div>
-                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                        <div class=" col-12 col-lg-4 border border-primary">
                                             <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i1">
                                         </div>
-                                        <div class=" col-12 col-lg-4 border border-primary rounded">
+                                        <div class=" col-12 col-lg-4 border border-primary">
                                             <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i2">
                                         </div>
 
@@ -139,7 +137,7 @@ if (isset($_SESSION["admin"])) {
                             <button class=" col-12 btn btn-success mb-4 " onclick="addproduct();"> Add Product </button>
                         </div>
 
-                        
+
                     </div>
 
                 </div>
