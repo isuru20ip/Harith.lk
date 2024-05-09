@@ -155,6 +155,36 @@ require "conection.php";
                                     </tr>
 
                                 </table>
+
+                                <div class=" col-12 d-flex justify-content-end">
+                                    <div class="row">
+
+                                        <div class=" col-12 d-inline-flex">
+                                            <div class="row g-2">
+
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <span class=" card text-center text-bg-warning rounded-pill p-1"> <a href="feedback.php?id=<?php echo $oid  ?>" style="text-decoration: none; color:black;">Go</a></span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <span class=" card text-center text-bg-danger text-black rounded-pill p-1" style="cursor: pointer;" onclick="deleteHistory('<?php echo $oid ?>');"> delete</span>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
                             </div>
 
                         </div>

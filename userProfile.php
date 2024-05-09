@@ -189,16 +189,14 @@ $pageno;
                             <h2 class=" col-12 text-center"> Punched History</h2>
                         </div>
 
-                        <!--table-->
+                        <!--table-md-->
                         <div class=" col-12 mt-3">
                             <table class="table border border-2">
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Order ID</th>
                                         <th scope="col">Date</th>
-                                        <th scope="col">Count</th>
-                                        <th scope="col">Feedback</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">Qty</th>
                                         <th scope="col">Actions</th>
 
                                     </tr>
@@ -239,17 +237,15 @@ $pageno;
                                     <tbody>
                                         <tr>
                                             <th scope="row"><?php echo $cart_data["order_id"] ?></th>
-                                            <td><?php echo $cart_data["date"] ?></td>
-                                            <td><?php echo $cart_data["item_count"] ?> items</td>
-                                            <td>
-                                                <span class=" card text-center text-bg-warning rounded-pill"> <a href="feedback.php?id=<?php echo $cart_data["order_id"] ?>" style="text-decoration: none; color:black;">Go</a></span>
-                                            </td>
+                                            <td><?php echo date('Y-m-d', strtotime($cart_data["date"]))  ?></td>
+                                            <td><?php echo $cart_data["item_count"] ?></td>
+
                                             <td>
                                                 <span class=" card text-center text-bg-info rounded-pill"> <a href="p_history.php?id=<?php echo $cart_data["order_id"] ?>" style="text-decoration: none; color:black;">viwe</a></span>
                                             </td>
 
                                             <td>
-                                                <span class=" card text-center text-bg-danger text-black rounded-pill" style="cursor: pointer;" onclick="deleteHistory('<?php echo $cart_data['order_id'] ?>');"> delete</span>
+                                                
                                             </td>
                                         </tr>
                                     </tbody>
