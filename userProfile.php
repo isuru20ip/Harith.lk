@@ -216,7 +216,7 @@ $pageno;
                                 $hisory_rs = Database::search("SELECT DISTINCT `order_id` FROM `invoice` WHERE `user_email` = '" . $email . "' ");
                                 $hisory_num = $hisory_rs->num_rows;
 
-                                $results_per_page = 3;
+                                $results_per_page = 2;
                                 $number_of_pages = ceil($hisory_num / $results_per_page);
 
                                 $page_rs = ($pageno - 1) * $results_per_page;
@@ -279,44 +279,10 @@ $pageno;
                                     </a>
                                 </li>
 
-                                <li class="page-item"><a class="page-link" href="#"><?php echo $pageno ?></a></li>
+                                <li class="page-item"><a class="page-link" href="#"><?php echo $pageno ?> of <?php echo $number_of_pages ?></a></li>
 
 
-                                <?php
-                                if (($pageno + 1) <= $number_of_pages) {
-
-                                ?>
-                                    <li class="page-item"><a class="page-link" href="
-                                <?php
-                                    if ($pageno >= $number_of_pages) {
-                                        echo ("#");
-                                    } else {
-                                        echo "?page=" . ($pageno + 1);
-                                    }
-                                ?>
-                                "><?php echo $pageno + 1 ?></a></li>
-                                <?php
-
-                                }
-                                ?>
-
-                                <?php
-                                if (($pageno + 2) <= $number_of_pages) {
-
-                                ?>
-                                    <li class="page-item"><a class="page-link" href="
-                                <?php
-                                    if ($pageno >= $number_of_pages) {
-                                        echo ("#");
-                                    } else {
-                                        echo "?page=" . ($pageno + 2);
-                                    }
-                                ?>
-                                "><?php echo $pageno + 2 ?></a></li>
-                                <?php
-
-                                }
-                                ?>
+                               
 
                                 <li class="page-item">
                                     <a class="page-link" href="
