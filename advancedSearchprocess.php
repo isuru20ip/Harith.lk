@@ -29,7 +29,7 @@ if (!empty($from) && empty($to)) {
         $query .= " WHERE `price` >= '" . $from . "'";
         $status = 1;
     } elseif ($status = 1) {
-        $query .= " AND  `price` >= '".$from."'";
+        $query .= " AND  `price` >= '" . $from . "'";
     }
 }
 
@@ -71,67 +71,85 @@ if ($sort == 4) {
 
 <?php
 
-if ("0" !== $_POST["page"]) {
-    $pageno = $_POST["page"];
-} else {
-    $pageno = 1;
-}
 
-$product_rs = Database::search($query);
-$product_num = $product_rs->num_rows;
 
-$results_per_page = 5;
-$number_of_page = ceil($product_num / $results_per_page);
-
-$page_rs = ($pageno - 1) * $results_per_page;
-$select_rs = Database::search($query . " LIMIT " . $results_per_page . " OFFSET " . $page_rs . " ");
-
-$select_num = $select_rs->num_rows;
-
-for ($i = 0; $i < $select_num; $i++) {
-    $product_data = $select_rs->fetch_assoc();
-
-    $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
-    $img_data = $img_rs->fetch_assoc();
-
+// ---------------------------------------------------
 ?>
+<!-- products -->
+<div class="col-12 mb-3 p-3">
+    <div class="row ">
 
-    <!-- card -->
-    <!-- <spin> -->
-    <div class=" col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded" style="width: 18rem;">
+        <div class="col-12" id="view_area">
+            <div class="row justify-content-center gap-2">
 
-        <img src="<?php echo $img_data["p_path"] ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                <?php
 
-        <div class="card-body ms-0 m-0 ">
+                if ("0" !== $_POST["page"]) {
+                    $pageno = $_POST["page"];
+                } else {
+                    $pageno = 1;
+                }
 
-            <div class=" col-12 text-center mt-3">
-                <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
-                <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
-            </div>
+                $product_rs = Database::search($query);
+                $product_num = $product_rs->num_rows;
 
-            <div class=" col-12 text-center mt-3">
-                <span class=" fw-bold text-decoration-none text-dark p-1 "> <?php echo $product_data["title"]; ?> </span>
-            </div>
+                $results_per_page = 2;
+                $number_of_page = ceil($product_num / $results_per_page);
 
-            <div class=" col-12 text-center">
-                <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
+                $page_rs = ($pageno - 1) * $results_per_page;
+                $select_rs = Database::search($query . " LIMIT " . $results_per_page . " OFFSET " . $page_rs . " ");
 
-                <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4">
-                    <img src="resources/wish.svg" />
-                </button>
+                $select_num = $select_rs->num_rows;
+
+                for ($i = 0; $i < $select_num; $i++) {
+                    $product_data = $select_rs->fetch_assoc();
+
+                    $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
+                    $img_data = $img_rs->fetch_assoc();
+
+                ?>
+
+                    <!-- card -->
+                    <!-- <spin> -->
+                    <div class=" col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded" style="width: 18rem;">
+
+                        <img src="<?php echo $img_data["p_path"] ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+
+                        <div class="card-body ms-0 m-0 ">
+
+                            <div class=" col-12 text-center mt-3">
+                                <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
+                                <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
+                            </div>
+
+                            <div class=" col-12 text-center mt-3">
+                                <span class=" fw-bold text-decoration-none text-dark p-1 "> <?php echo $product_data["title"]; ?> </span>
+                            </div>
+
+                            <div class=" col-12 text-center">
+                                <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
+
+                                <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4">
+                                    <img src="resources/wish.svg" />
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <spin> -->
+                    <!-- card -->
+
+                <?php
+                }
+                ?>
+
             </div>
 
         </div>
+
     </div>
-    <!-- <spin> -->
-    <!-- card -->
-
-<?php
-}
-
-?>
-
-
+</div>
+<!-- products -->
 
 </div>
 </div>
@@ -144,7 +162,7 @@ for ($i = 0; $i < $select_num; $i++) {
                                             echo ("#");
                                         } else {
                                         ?> onclick="advancedSearch(<?php echo ($pageno - 1) ?>);" <?php
-                                                                                        } ?> aria-label="Previous">
+                                                                                                } ?> aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -173,7 +191,7 @@ for ($i = 0; $i < $select_num; $i++) {
                                             echo ("#");
                                         } else {
                                         ?> onclick="advancedSearch(<?php echo ($pageno + 1) ?>);" <?php
-                                                                                        } ?> aria-label="Next">
+                                                                                                } ?> aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
