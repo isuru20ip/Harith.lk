@@ -30,7 +30,7 @@ require "conection.php";
                 <div class=" row">
 
                     <div class=" col-12 text-center text-bg-light border border-black rounded-bottom-5">
-                        <label class=" fs-1 fw-bold "> AYUNA ADVANCED SEARCH</label>
+                        <label class=" fs-1 fw-bold ">ADVANCED SEARCH</label>
                     </div>
 
                     <div class=" col-12 col-lg-8 mt-3">
