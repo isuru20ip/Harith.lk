@@ -36,7 +36,7 @@ require "conection.php";
 
                     <div class="col-12 col-lg-6">
 
-                        <div class="input-group mb-3 mt-3">
+                        <div class="input-group mb-3 mt-md-3">
                             <input type="text" class="form-control border border-2 border-success" aria-label="Text input with dropdown button" id="text" />
 
                             <select class="form-select border border-2 border-success" style="max-width: 250px;" id="cat">
