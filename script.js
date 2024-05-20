@@ -993,11 +993,7 @@ function findlist(x) {
 }
 
 function viweall(c) {
-
-
-    var f = new FormData();
-    f.append("cat", c);
-
+    
     var r = new XMLHttpRequest();
 
     r.onreadystatechange = function () {
@@ -1007,8 +1003,8 @@ function viweall(c) {
         }
     }
 
-    r.open("POST", "viweall.php", true);
-    r.send(f);
+    r.open("GET", "viweall.php?cat=" + c, true);
+    r.send();
 
 }
 
