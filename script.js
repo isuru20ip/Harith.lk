@@ -400,6 +400,26 @@ function qty_dec() {
 
 }
 
+function viewSigleMoreImgs(im) {
+
+    var imge = document.getElementById(im);
+
+    var file = imge;
+    var url = window.URL.createObjectURL(file);
+    document.getElementById("mainImg").src = url;
+
+
+
+}
+function copyImage(im) {
+    var imge = document.getElementById(im);
+    var mainImg = document.getElementById('mainImg');
+
+    // Copy the src of the clicked image to the main image
+    mainImg.src = imge.src;
+}
+
+
 // function paynow(pid) {
 
 //     var qty = document.getElementById("qty_play").value;
@@ -674,7 +694,7 @@ function addproduct() {
     for (var x = 0; x < file_count; x++) {
         f.append("pim" + x, pimg.files[x]);
     }
-    
+
     var r = new XMLHttpRequest();
     r.onreadystatechange = function () {
         if (r.readyState == 4 && r.status == 200) {
@@ -993,7 +1013,7 @@ function findlist(x) {
 }
 
 function viweall(c) {
-    
+
     var r = new XMLHttpRequest();
 
     r.onreadystatechange = function () {

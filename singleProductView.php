@@ -47,16 +47,45 @@ if (isset($_GET["id"])) {
 
                     <div class="col-12 p-3">
 
-                        <div class="card mb-3">
+                        <div class="card mb-3 shadow shadow-lg">
                             <div class="row g-0">
-                                <div class="col-md-4">
-                                    <?php
-                                    $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
+                                <?php
+                                $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
+                                $pimg_num = $pimg_rs->num_rows;
+                                $img = array();
+                                for ($i = 0; $i < $pimg_num; $i++) {
                                     $pimg_data = $pimg_rs->fetch_assoc();
-                                    ?>
-                                    <img src="<?php echo $pimg_data["p_path"]; ?>" class="img-fluid rounded-start" alt="...">
+                                    $img[$i] = $pimg_data["p_path"];
+                                }
+                                ?>
+                                <div class="col-md-4 border border-end ">
+                                    <img src="<?php echo $img[0]; ?>" class="img-fluid rounded-start" id="mainImg">
                                 </div>
-                                <div class="col-md-8">
+
+                                <?php
+                                if ($pimg_num > 1) {
+                                ?>
+                                    <div class="col-md-2">
+                                        <div class="row">
+                                            <?php
+                                            for ($i = 0; $i < $pimg_num; $i++) {
+                                            ?>
+                                                <div class=" col col-md-12">
+                                                    <div class="card" style="width: 10rem; cursor: pointer;">
+                                                        <img src="<?php echo $img[$i] ?>" class="card-img-top" id="img<?php echo $i ?>" onclick="copyImage('img<?php echo $i ?>')">
+                                                    </div>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
+                                <div class="col-md-6">
                                     <div class="card-body">
                                         <div class="row g-2">
 
