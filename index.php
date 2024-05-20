@@ -112,7 +112,7 @@ require "conection.php";
 
                         <?php
 
-                        $cat_rs = Database::search("SELECT * FROM `category`");
+                        $cat_rs = Database::search("SELECT * FROM `category` WHERE category.id IN (SELECT product.category_id FROM `product`)");
                         $cat_num = $cat_rs->num_rows;
 
                         for ($x = 0; $x < $cat_num; $x++) {
