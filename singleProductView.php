@@ -38,94 +38,149 @@ if (isset($_GET["id"])) {
 
         <body>
 
-            <div class="container-fluid d-flex justify-content-center">
-                <div class="row align-content-center">
+            <div class="container-fluid">
+                <div class="row">
 
-                    <?php include "header.php"; ?>
+                    <?php require "header.php"; ?>
 
                     <!-- content -->
 
-                    <div class="col-12 p-3 ">
-                        <div class="row">
+                    <div class="col-12 p-3">
 
-                            <div class=" col-12 col-lg-6 border border-black border-2">
-
+                        <div class="card mb-3 shadow shadow-lg">
+                            <div class="row g-0">
                                 <?php
                                 $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
-                                $pimg_data = $pimg_rs->fetch_assoc();
+                                $pimg_num = $pimg_rs->num_rows;
+                                $img = array();
+                                for ($i = 0; $i < $pimg_num; $i++) {
+                                    $pimg_data = $pimg_rs->fetch_assoc();
+                                    $img[$i] = $pimg_data["p_path"];
+                                }
                                 ?>
-
-                                <div class=" col-12 border border-black">
-                                    <div class="row">
-                                        <div class=" col-8">
-                                            <img src="<?php echo $pimg_data["p_path"]; ?>">
-                                        </div>
-                                    </div>
-
+                                <div class="col-md-4 border border-end ">
+                                    <img src="<?php echo $img[0]; ?>" class="img-fluid rounded-start" id="mainImg">
                                 </div>
-                            </div>
 
-                            <!--s-->
-
-                            <div class="col-12 col-lg-6 border border-4 border-black bg-white">
-                                <div class="row g-2">
-
-                                    <div class="col-12 p-3 mb-0 pb-0">
-
-                                        <?php
-                                        $price = $product_data["price"];
-                                        $new_price = ((110 / 100) * $price)
-                                        ?>
-
-                                        <h1 class=" m-3"><?php echo $product_data["title"]; ?></h1>
-                                        <p class=" ms-3 mt-3 mb-0 fs-5 text-decoration-line-through text-black-50">LKR:<?php echo $new_price ?>.00</p>
-                                        <h3 class=" ms-3 mt-0 mb-3 text-danger">LKR: <?php echo $product_data["price"] ?>.00</h3>
-                                        <span class=" ms-3 p-1 rounded-1 text-bg-success "><?php echo $product_data["qty"]; ?> Available</span>
-
-
-                                        <div class="col-12 m-3 p-3 border border-1 rounded-2">
-                                            <p><?php echo $product_data["description"]; ?></p>
-                                        </div>
-
-                                    </div>
-
-                                    <div class=" col-12 text-center ">
-                                        <button class=" col-1 btn btn-outline-warning rounded-5 p-1" onclick="qty_dec();"> - </i></button>
-                                        <input type="text" class=" btn col-3 text-center fw-bold text-bg-light rounded-5" pattern="[0-9]" value="1" id="qty_play" disabled />
-                                        <button class=" col-1 btn btn-outline-success  rounded-5 p-1" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></button>
-                                    </div>
-
-                                    <div class="col-12 p-3 ">
-                                        <div class=" row">
+                                <?php
+                                if ($pimg_num > 1) {
+                                ?>
+                                    <div class="col-md-2">
+                                        <div class="row">
                                             <?php
-                                            if (isset($_SESSION["user"])) {
+                                            for ($i = 0; $i < $pimg_num; $i++) {
                                             ?>
-
-                                                <button type="submit" id="payhere-payment" class=" btn btn-danger mb-2" onclick="addtocart2(<?php echo $product_data['id']; ?>);">Buy Now</button>
-                                                <button class=" btn btn-dark mb-2" onclick="addtocart(<?php echo $product_data['id']; ?>);">add to cart </button>
-                                                <button class=" btn btn-warning" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);"> watchlist</button>
-                                            <?php
-                                            } else {
-                                            ?>
-
-                                                <a href="Log_in.php" class="p-2 bg-success rounded-2 border border-0 text-black text-center text-decoration-none">Log in</a>
-
-                                                <!-- <span class=" p-2 bg-secondary rounded-2 border border-0 text-black text-center">Log-in</span>
-                                                <span class=" p-2 bg-secondary rounded-2 border border-0 mt-2 text-black text-center " >add to cart</span>
-                                                <span class=" p-2 bg-secondary rounded-2 border border-0 mt-2 text-black text-center ">watchlist</span> -->
-
+                                                <div class=" col col-md-12">
+                                                    <div class="card" style="width: 10rem; cursor: pointer;">
+                                                        <img src="<?php echo $img[$i] ?>" class="card-img-top" id="img<?php echo $i ?>" onclick="copyImage('img<?php echo $i ?>')">
+                                                    </div>
+                                                </div>
                                             <?php
                                             }
                                             ?>
 
                                         </div>
                                     </div>
+                                <?php
+                                }
+                                ?>
+
+                                <div class="col-md-6">
+                                    <div class="card-body">
+                                        <div class="row g-2">
+
+                                            <div class="col-12 p-3 mb-0 pb-0">
+
+                                                <?php
+                                                $price = $product_data["price"];
+                                                $new_price = ((110 / 100) * $price)
+                                                ?>
+
+                                                <h1 class=" m-3"><?php echo $product_data["title"]; ?></h1>
+                                                <p class=" ms-3 mt-3 mb-0 fs-5 text-decoration-line-through text-black-50">LKR:<?php echo $new_price ?>.00</p>
+                                                <h3 class=" ms-3 mt-0 mb-3 text-danger">LKR: <?php echo $product_data["price"] ?>.00</h3>
+                                                <span class=" ms-3 p-1 rounded-1 text-bg-success "><?php echo $product_data["qty"]; ?> Available</span>
+
+
+                                                <div class="col-12 m-3 p-3 border border-1 rounded-2">
+                                                    <p><?php echo $product_data["description"]; ?></p>
+                                                </div>
+
+                                            </div>
+
+                                            <div class=" col-12">
+                                                <div class="row">
+                                                    <div class="col-4 col-md-1 offset-md-3">
+                                                        <div class="row g-1">
+                                                            <h3 class=" border-1 bg-warning text-center" onclick="qty_dec();"> - </i></h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 col-md-2">
+                                                        <div class="row g-1">
+                                                            <input type="text" class=" text-center border-1 bg-body-secondary p-1" pattern="[0-9]" value="1" id="qty_play" disabled />
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-4 col-md-1">
+                                                        <div class="row g-1">
+                                                            <h3 class="border-1 bg-success text-center" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></h3>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 p-3">
+                                                <div class=" row">
+                                                    <?php
+                                                    if (isset($_SESSION["user"])) {
+                                                    ?>
+                                                        <div class=" col-12 col-md-4">
+                                                            <div class="row g-1">
+                                                                <button type="submit" id="payhere-payment" class=" btn btn-danger mb-2" onclick="addtocart2(<?php echo $product_data['id']; ?>);">Buy Now</button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class=" col-12 col-md-4">
+                                                            <div class="row g-1">
+                                                                <button class=" btn btn-dark mb-2" onclick="addtocart(<?php echo $product_data['id']; ?>);">add to cart </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class=" col-12 col-md-4">
+                                                            <div class="row g-1">
+                                                                <button class=" btn btn-warning" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);"> watchlist</button>
+                                                            </div>
+                                                        </div>
+
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <a href="Log_in.php" class="p-2 bg-success rounded-2 border border-0 text-black text-center text-decoration-none">Log in</a>
+                                                    <?php
+                                                    }
+                                                    ?>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <!--s-->
+                        <div class=" card d-none">
+                            <div class="row d-none">
+
+                                <div class="col-12 col-lg-6 border border-4 border-black bg-white">
+
+                                </div>
+
+                                <!--s-->
 
 
+
+                            </div>
 
                         </div>
                     </div>
