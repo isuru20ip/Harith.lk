@@ -45,17 +45,24 @@ if (isset($_GET["id"])) {
 
                     <!-- content -->
 
-                    <div class="col-12 p-3 bg-secondary">
+                    <div class="col-12 p-3 ">
                         <div class="row">
 
-                            <div class=" col-12 col-lg-6 border border-4 border-black bg-white d-flex align-items-center justify-content-center">
+                            <div class=" col-12 col-lg-6 border border-black border-2">
 
                                 <?php
                                 $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
                                 $pimg_data = $pimg_rs->fetch_assoc();
                                 ?>
 
-                                <img src="<?php echo $pimg_data["p_path"]; ?>">
+                                <div class=" col-12 border border-black">
+                                    <div class="row">
+                                        <div class=" col-8">
+                                            <img src="<?php echo $pimg_data["p_path"]; ?>">
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
 
                             <!--s-->
@@ -123,25 +130,12 @@ if (isset($_GET["id"])) {
                         </div>
                     </div>
 
-                    <div class=" col-12 p-3 border border-2 border-black">
-                        <div class=" row">
-
-                            <div class=" col-12 vh-100">
-                                <div class="overflow-y-scroll">
-                                    
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
 
                     <?php include "footer.php"; ?>
 
                     <script src="bootstrap.bundle.js"></script>
                     <script src="script.js"></script>
-                    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+                    <!-- <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script> -->
         </body>
 
         </html>
