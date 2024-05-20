@@ -33,7 +33,7 @@
                 } else {
 
                 ?>
-                    <h5 class=" d-none "> <a href="index.php" class="text-white text-decoration-none fw-bold">Home</a> </h5>
+                    <h5 class="ms-5 "> <a href="index.php" class=" text-white text-decoration-none fw-bold">Home</a> </h5>
                 <?php
 
                 }
@@ -48,19 +48,19 @@
             <div class=" col-12 col-lg-4 align-self-end my-3 text-center">
 
 
-
+                <span class="ms-3 "> <a href="index.php" class=" text-white text-decoration-none fw-bold">Home</a> </span>
 
                 <?php
                 if (isset($_SESSION["user"])) {
                 ?>
-                    <span class="ms-3 d-none "> <a href="index.php" class=" text-white text-decoration-none fw-bold d-none">Home</a> </span>
+                    <span class="ms-3 "> <a href="index.php" class=" text-white text-decoration-none fw-bold">Home</a> </span>
                     <span class="ms-3 "> <a href="wishlist.php" class=" text-white text-decoration-none fw-bold">Wishlist</a> </span>
                     <span class="ms-3 "> <a href="userProfile.php" class=" text-white text-decoration-none fw-bold">Account</a> </span>
                     <span class=" ms-3" onclick="window.location = 'cart.php'  "> <img src="resources/cartico.svg" style="height: 25px; cursor: pointer;"></span>
                 <?php
                 } else {
                 ?>
-                    <span class="ms-3 "> <a href="index.php" class=" text-white text-decoration-none fw-bold">Home</a> </span>
+
                     <h5 class="ms-3 "> <a href="Log_in.php" class=" text-white text-decoration-none fw-bold">LogIn</a> </h5>
 
                 <?php
