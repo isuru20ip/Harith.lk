@@ -38,94 +38,113 @@ if (isset($_GET["id"])) {
 
         <body>
 
-            <div class="container-fluid d-flex justify-content-center">
-                <div class="row align-content-center">
+            <div class="container-fluid">
+                <div class="row">
 
-                    <?php include "header.php"; ?>
+                    <?php require "header.php"; ?>
 
                     <!-- content -->
 
-                    <div class="col-12 p-3 ">
-                        <div class="row">
+                    <div class="col-12 p-3">
 
-                            <div class=" col-12 col-lg-6 border border-black border-2">
-
-                                <?php
-                                $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
-                                $pimg_data = $pimg_rs->fetch_assoc();
-                                ?>
-
-                                <div class=" col-12 border border-black">
-                                    <div class="row">
-                                        <div class=" col-8">
-                                            <img src="<?php echo $pimg_data["p_path"]; ?>">
-                                        </div>
+                        <div class="card mb-3" style="height: 500px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="resources\product\aa.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                                     </div>
-
                                 </div>
                             </div>
+                        </div>
 
-                            <!--s-->
+                        <div class=" card d-none">
+                            <div class="row d-none">
 
-                            <div class="col-12 col-lg-6 border border-4 border-black bg-white">
-                                <div class="row g-2">
+                                <div class=" col-12 col-lg-6 ">
 
-                                    <div class="col-12 p-3 mb-0 pb-0">
+                                    <?php
+                                    $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
+                                    $pimg_data = $pimg_rs->fetch_assoc();
+                                    ?>
 
-                                        <?php
-                                        $price = $product_data["price"];
-                                        $new_price = ((110 / 100) * $price)
-                                        ?>
-
-                                        <h1 class=" m-3"><?php echo $product_data["title"]; ?></h1>
-                                        <p class=" ms-3 mt-3 mb-0 fs-5 text-decoration-line-through text-black-50">LKR:<?php echo $new_price ?>.00</p>
-                                        <h3 class=" ms-3 mt-0 mb-3 text-danger">LKR: <?php echo $product_data["price"] ?>.00</h3>
-                                        <span class=" ms-3 p-1 rounded-1 text-bg-success "><?php echo $product_data["qty"]; ?> Available</span>
-
-
-                                        <div class="col-12 m-3 p-3 border border-1 rounded-2">
-                                            <p><?php echo $product_data["description"]; ?></p>
+                                    <div class=" col-12 border border-black">
+                                        <div class="row">
+                                            <div class=" col-8">
+                                                <img src="<?php echo $pimg_data["p_path"]; ?>">
+                                            </div>
                                         </div>
 
                                     </div>
+                                </div>
 
-                                    <div class=" col-12 text-center ">
-                                        <button class=" col-1 btn btn-outline-warning rounded-5 p-1" onclick="qty_dec();"> - </i></button>
-                                        <input type="text" class=" btn col-3 text-center fw-bold text-bg-light rounded-5" pattern="[0-9]" value="1" id="qty_play" disabled />
-                                        <button class=" col-1 btn btn-outline-success  rounded-5 p-1" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></button>
-                                    </div>
+                                <!--s-->
 
-                                    <div class="col-12 p-3 ">
-                                        <div class=" row">
+                                <div class="col-12 col-lg-6 border border-4 border-black bg-white">
+                                    <div class="row g-2">
+
+                                        <div class="col-12 p-3 mb-0 pb-0">
+
                                             <?php
-                                            if (isset($_SESSION["user"])) {
+                                            $price = $product_data["price"];
+                                            $new_price = ((110 / 100) * $price)
                                             ?>
 
-                                                <button type="submit" id="payhere-payment" class=" btn btn-danger mb-2" onclick="addtocart2(<?php echo $product_data['id']; ?>);">Buy Now</button>
-                                                <button class=" btn btn-dark mb-2" onclick="addtocart(<?php echo $product_data['id']; ?>);">add to cart </button>
-                                                <button class=" btn btn-warning" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);"> watchlist</button>
-                                            <?php
-                                            } else {
-                                            ?>
+                                            <h1 class=" m-3"><?php echo $product_data["title"]; ?></h1>
+                                            <p class=" ms-3 mt-3 mb-0 fs-5 text-decoration-line-through text-black-50">LKR:<?php echo $new_price ?>.00</p>
+                                            <h3 class=" ms-3 mt-0 mb-3 text-danger">LKR: <?php echo $product_data["price"] ?>.00</h3>
+                                            <span class=" ms-3 p-1 rounded-1 text-bg-success "><?php echo $product_data["qty"]; ?> Available</span>
 
-                                                <a href="Log_in.php" class="p-2 bg-success rounded-2 border border-0 text-black text-center text-decoration-none">Log in</a>
 
-                                                <!-- <span class=" p-2 bg-secondary rounded-2 border border-0 text-black text-center">Log-in</span>
+                                            <div class="col-12 m-3 p-3 border border-1 rounded-2">
+                                                <p><?php echo $product_data["description"]; ?></p>
+                                            </div>
+
+                                        </div>
+
+                                        <div class=" col-12 text-center ">
+                                            <button class=" col-1 btn btn-outline-warning rounded-5 p-1" onclick="qty_dec();"> - </i></button>
+                                            <input type="text" class=" btn col-3 text-center fw-bold text-bg-light rounded-5" pattern="[0-9]" value="1" id="qty_play" disabled />
+                                            <button class=" col-1 btn btn-outline-success  rounded-5 p-1" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></button>
+                                        </div>
+
+                                        <div class="col-12 p-3 ">
+                                            <div class=" row">
+                                                <?php
+                                                if (isset($_SESSION["user"])) {
+                                                ?>
+
+                                                    <button type="submit" id="payhere-payment" class=" btn btn-danger mb-2" onclick="addtocart2(<?php echo $product_data['id']; ?>);">Buy Now</button>
+                                                    <button class=" btn btn-dark mb-2" onclick="addtocart(<?php echo $product_data['id']; ?>);">add to cart </button>
+                                                    <button class=" btn btn-warning" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);"> watchlist</button>
+                                                <?php
+                                                } else {
+                                                ?>
+
+                                                    <a href="Log_in.php" class="p-2 bg-success rounded-2 border border-0 text-black text-center text-decoration-none">Log in</a>
+
+                                                    <!-- <span class=" p-2 bg-secondary rounded-2 border border-0 text-black text-center">Log-in</span>
                                                 <span class=" p-2 bg-secondary rounded-2 border border-0 mt-2 text-black text-center " >add to cart</span>
                                                 <span class=" p-2 bg-secondary rounded-2 border border-0 mt-2 text-black text-center ">watchlist</span> -->
 
-                                            <?php
-                                            }
-                                            ?>
+                                                <?php
+                                                }
+                                                ?>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!--s-->
+
+
+
                             </div>
-
-                            <!--s-->
-
-
 
                         </div>
                     </div>
