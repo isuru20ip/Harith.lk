@@ -35,4 +35,6 @@ if (isset($_SESSION["user"])) {
         }
         
     }
+}else{
+    echo("You must Loging first");
 }
