@@ -79,20 +79,19 @@ if (isset($_GET["id"])) {
 
                                             </div>
 
-                                            <div class=" col-12 px-3">
+                                            <div class=" col-12">
                                                 <div class="row">
-
-                                                    <div class="col-1 offset-3">
+                                                    <div class="col-4 col-md-1 offset-md-3">
                                                         <div class="row g-1">
                                                             <h3 class=" border-1 bg-warning text-center" onclick="qty_dec();"> - </i></h3>
                                                         </div>
                                                     </div>
-                                                    <div class="col-2">
+                                                    <div class="col-4 col-md-2">
                                                         <div class="row g-1">
                                                             <input type="text" class=" text-center border-1 bg-body-secondary p-1" pattern="[0-9]" value="1" id="qty_play" disabled />
                                                         </div>
                                                     </div>
-                                                    <div class="col-1">
+                                                    <div class=" col-4 col-md-1">
                                                         <div class="row g-1">
                                                             <h3 class="border-1 bg-success text-center" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></h3>
                                                         </div>
