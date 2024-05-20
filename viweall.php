@@ -4,7 +4,7 @@ $cat = $_GET["cat"];
 
 ?>
 <!-- products -->
-<div class="col-12 mb-3 p-3">
+<div class="col-12 mb-3 p-3 border border-black">
     <div class="row ">
 
         <div class="col-12" id="view_area">
