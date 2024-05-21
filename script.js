@@ -356,7 +356,10 @@ function basicsearch(x) {
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
-            document.getElementById("basicSearchResult").innerHTML = t;
+            if (t != 'doNothing') {
+                document.getElementById("basicSearchResult").innerHTML = t;
+            }
+            
         }
     }
 
