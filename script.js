@@ -1025,10 +1025,9 @@ function viweall(c) {
             document.getElementById("basicSearchResult").innerHTML = t;
         }
     }
-
+    
     r.open("GET", "viweall.php?cat=" + c, true);
     r.send();
-
 }
 
 function addtocart(pid) {

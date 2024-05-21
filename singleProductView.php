@@ -6,7 +6,7 @@ if (isset($_GET["id"])) {
 
     $pid = $_GET["id"];
 
-    $product_rs = Database::search("SELECT product.title,product.description,product.price,product.id,product.delivery_fee,product.qty,status.status_name AS sname,category.category_name AS cname FROM product
+    $product_rs = Database::search("SELECT product.title,product.description,product.price,product.id,product.delivery_fee,product.qty,status.status_name AS sname,category.category_name AS cname, product.category_id AS id FROM product
         INNER JOIN category ON  category.id = product.category_id
         INNER JOIN status ON status.status_id = product.status_status_id
         WHERE product.id = '" . $pid . "'");
@@ -44,8 +44,11 @@ if (isset($_GET["id"])) {
                     <?php require "header.php"; ?>
 
                     <!-- content -->
+                    <div class="col-12 p-3" id="basicSearchResult">
 
-                    <div class="col-12 p-3">
+                        <div class="col-12 mt-1 ms-3 fw-bold mb-2">
+                            <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> <span onclick="viweall('<?php echo $product_data['id']  ?>');" class=" text-primary" style=" cursor: pointer;"><?php echo $product_data["cname"]; ?> ></span> <!-- --> <span><?php echo $product_data["title"];  ?></span>
+                        </div>
 
                         <div class="card mb-3 shadow shadow-lg">
                             <div class="row g-0">
@@ -62,28 +65,22 @@ if (isset($_GET["id"])) {
                                     <img src="<?php echo $img[0]; ?>" class="img-fluid rounded-start" id="mainImg">
                                 </div>
 
-                                <?php
-                                if ($pimg_num > 1) {
-                                ?>
-                                    <div class="col-md-2">
-                                        <div class="row">
-                                            <?php
-                                            for ($i = 0; $i < $pimg_num; $i++) {
-                                            ?>
-                                                <div class=" col col-md-12">
-                                                    <div class="card" style="width: 10rem; cursor: pointer;">
-                                                        <img src="<?php echo $img[$i] ?>" class="card-img-top" id="img<?php echo $i ?>" onclick="copyImage('img<?php echo $i ?>')">
-                                                    </div>
+                                <div class=" col-12 col-md-1">
+                                    <div class="row">
+                                        <?php
+                                        for ($i = 0; $i < $pimg_num; $i++) {
+                                        ?>
+                                            <div class=" col-4 col-md-12">
+                                                <div class="card" style="width: 110px; cursor: pointer;">
+                                                    <img src="<?php echo $img[$i] ?>" class="card-img-top" id="img<?php echo $i ?>" onclick="copyImage('img<?php echo $i ?>')">
                                                 </div>
-                                            <?php
-                                            }
-                                            ?>
+                                            </div>
+                                        <?php
+                                        }
+                                        ?>
 
-                                        </div>
                                     </div>
-                                <?php
-                                }
-                                ?>
+                                </div>
 
                                 <div class="col-md-6">
                                     <div class="card-body">
@@ -110,7 +107,7 @@ if (isset($_GET["id"])) {
 
                                             <div class=" col-12">
                                                 <div class="row">
-                                                    <div class="col-4 col-md-1 offset-md-3">
+                                                    <div class="col-4 col-md-1 offset-md-4">
                                                         <div class="row g-1">
                                                             <h3 class=" border-1 bg-warning text-center" onclick="qty_dec();"> - </i></h3>
                                                         </div>
