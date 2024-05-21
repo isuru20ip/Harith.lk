@@ -34,7 +34,7 @@ require "conection.php";
                 $shipping = 0;
 
             ?>
-                <div class="col-12 border border-1 border-primary rounded mb-3">
+                <div class="col-12 border border-1 border-primary">
                     <div class="row">
 
                         <div class="col-12">
@@ -55,11 +55,11 @@ require "conection.php";
                                 $cart_data = $cart_rs->fetch_assoc();
                                 $pid = $cart_data["product_id"];
 
-                                 ?>
+                        ?>
                                 <!-- products -->
 
                                 <div class="col-12 col-lg-9">
-                                    <div class="row">
+                                    <div class="row g-0">
 
                                         <div class="card mb-3 mx-0 col-12">
                                             <div class="row g-0">
@@ -74,44 +74,63 @@ require "conection.php";
                                                 }
 
                                                 $total = $subtal + $shipping;
-                                            
-                                                ?>
-                                                <div class="col-md-4 text-center">
 
-                                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="<?php echo $product_data["description"]; ?>" title="Product Description">
-                                                    <?php 
-                                                    $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '".$product_data["id"]."'");
-                                                    $img_data = $img_rs->fetch_assoc();
-                                                    ?>
-                                                        <img src="<?php  echo $img_data["p_path"]; ?>" class="img-thumbnail border-0" style="max-width: 200px;">
-                                                    </span>
+                                                ?>
+                                                <div class="col-md-4 d-flex justify-content-center">
+                                                    <div class="row align-content-center">
+                                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="<?php echo $product_data["description"]; ?>" title="Product Description">
+                                                            <?php
+                                                            $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
+                                                            $img_data = $img_rs->fetch_assoc();
+                                                            ?>
+                                                            <img src="<?php echo $img_data["p_path"]; ?>" class="img-thumbnail border-0" style="max-width: 200px;">
+                                                        </span>
+                                                    </div>
 
                                                 </div>
                                                 <div class="col-md-5">
                                                     <div class="card-body">
 
-                                                        <h3 class="card-title"><?php  echo $product_data["title"]; ?></h3>
+                                                        <h3 class="card-title"><?php echo $product_data["title"]; ?></h3>
 
                                                         <span class="fw-bold text-black-50 fs-5">Price :</span>&nbsp;
-                                                        <span class="fw-bold text-black fs-5">Rs. <?php  echo $product_data["price"]; ?> .00</span>
+                                                        <span class="fw-bold text-black fs-5">Rs. <?php echo $product_data["price"]; ?> .00</span>
                                                         <br>
                                                         <span class="fw-bold text-black-50 fs-5">Quantity: <?php echo $product_data["qty"] ?> items in Stock</span>&nbsp;
                                                         <br />
 
                                                         <div class=" col-12 mt-3">
-                                                            <button class="rounded-start-circle fw-bold fs-5" onclick="cart_qty_dec(<?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> - </i></button>
-                                                            <input type="text" class=" col-6 text-center border-black fw-bold fs-5" pattern="[0-9]" value="<?php  echo $cart_data["qty"]; ?>" id="qty_play<?php echo $i ?>" disabled />
-                                                            <button class=" fw-bold rounded-end-circle fs-5" onclick="cart_qty_inc(<?php echo $product_data['qty']; ?>, <?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> + </i></button>
+                                                            <div class="row">
+
+                                                                <div class=" col-3">
+                                                                    <div class="row g-1">
+                                                                        <button class="fw-bold" onclick="cart_qty_dec(<?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> - </i></button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class=" col-6">
+                                                                   <div class="row g-1">
+                                                                   <input type="text" class="text-center border-black fw-bold" pattern="[0-9]" value="<?php echo $cart_data["qty"]; ?>" id="qty_play<?php echo $i ?>" disabled />
+                                                                   </div>
+                                                                </div>
+
+                                                                <div class="col-3">
+                                                                   <div class="row g-1">
+                                                                   <button class="fw-bold" onclick="cart_qty_inc(<?php echo $product_data['qty']; ?>, <?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> + </i></button>
+                                                                   </div>
+                                                                </div>
+
+                                                            </div>
                                                         </div>
 
                                                         <br />
                                                         <span class="fw-bold text-black-50 fs-5">Delivery Fee :</span>&nbsp;
-                                                        <span class="fw-bold text-black fs-5">Rs.<?php  echo $product_data["delivery_fee"]; ?>.00</span>
+                                                        <span class="fw-bold text-black fs-5">Rs.<?php echo $product_data["delivery_fee"]; ?>.00</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class=" card-body d-flex justify-content-end">
-                                                        <button class="btn btn-danger mb-2" onclick="removecart(<?php  echo $product_data['id']; ?>);"><i class="bi bi-trash3"></i></button>
+                                                        <button class="btn btn-danger mb-2" onclick="removecart(<?php echo $product_data['id']; ?>);"><i class="bi bi-trash3"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,11 +158,11 @@ require "conection.php";
                                     </div>
 
                                     <div class="col-6 mb-3">
-                                        <span class="fs-6 fw-bold">items(<?php  echo $cart_num; ?>)</span>
+                                        <span class="fs-6 fw-bold">items(<?php echo $cart_num; ?>)</span>
                                     </div>
 
                                     <div class="col-6 text-end mb-3">
-                                        <span class="fs-6 fw-bold">Rs.<?php  echo $subtal; ?>.00</span>
+                                        <span class="fs-6 fw-bold">Rs.<?php echo $subtal; ?>.00</span>
                                     </div>
 
                                     <div class="col-6">
@@ -222,4 +241,5 @@ require "conection.php";
         })
     </script>
 </body>
+
 </html>
