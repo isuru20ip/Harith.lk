@@ -75,9 +75,22 @@ if (!empty($text) || $cat != 0) {
                                         <div class=" col-12 text-center">
                                             <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
 
-                                            <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);">
-                                                <img src="resources/wish.svg" />
-                                            </button>
+                                            <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);">
+                                                                    <?php
+                                                                    $wishRs = Database::search("SELECT * FROM `watchlist` WHERE watchlist.product_id = '" . $product_data["id"] . "' AND watchlist.user_email = '" . $_SESSION["user"]["email"] . "' ");
+                                                                    $wishNum = $wishRs->num_rows;
+                                                                    if ($wishNum == 1) {
+                                                                    ?>
+                                                                        <img src="resources/wish.svg" />
+                                                                    <?php
+                                                                    }else{
+                                                                        ?>
+                                                                        <img src="resources/watchlistEmptyView.svg" style="height: 30px;"/>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+
+                                                                </button>
                                         </div>
 
                                     </div>
