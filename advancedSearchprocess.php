@@ -128,7 +128,7 @@ if (!empty($text) || $category != 0 || !empty($from) || !empty($to)) {
                             <div class="card-body ms-0 m-0 ">
 
                                 <div class=" col-12 text-center mt-3">
-                                    <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
+                                    <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" >Add</a>
                                     <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
                                 </div>
 
