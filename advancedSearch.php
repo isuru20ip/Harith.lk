@@ -84,7 +84,7 @@ require "conection.php";
                                 <div class=" row g-2">
 
                                     <div class=" col-12 col-lg-4 offset-lg-8 p-3">
-                                        <select id="s" class=" form-select">
+                                        <select id="s" class=" form-select" onchange="advancedSearch(0);">
                                             <option value="0">SHORT BY</option>
                                             <option value="1">HIGH TO LOW</option>
                                             <option value="2">LOW TO HIGH</option>

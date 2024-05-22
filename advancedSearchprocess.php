@@ -7,7 +7,7 @@ $from = $_POST["pf"];
 $to = $_POST["pt"];
 $sort = $_POST["s"];
 
-if (!empty($text) || $category != 0 || !empty($from) || !empty($to) || $sort != 0) {
+if (!empty($text) || $category != 0 || !empty($from) || !empty($to)) {
 
     $query = "SELECT * FROM `product`";
     $status = 0;
