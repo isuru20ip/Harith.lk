@@ -30,7 +30,7 @@ require "conection.php";
             <hr class=" border border-3 border-black" />
 
             <div class="col-12 justify-content-center">
-                <div class="row mb-3">
+                <div class="row">
 
                     <div class="offset-4 offset-lg-1 col-4 col-lg-1 logo" style="height: 60px;"></div>
 

@@ -1,8 +1,13 @@
 <?php
 require "conection.php";
 $cat = $_GET["cat"];
-
+$catData = Database::search("SELECT `category_name` FROM `category` WHERE `id` = '".$cat."'");
+$name = $catData->fetch_assoc();
 ?>
+
+<div class=" col-12 ms-3 fw-bold fs-6 mt-0 mb-2" id="path">
+    <span><a href="index.php" class=" text-decoration-none">Home</a></span> <!-- --> <span> > <?php echo $name["category_name"];  ?> </span>
+</div>
 <!-- products -->
 <div class="col-12 mb-3 p-3 border border-black">
     <div class="row ">
@@ -17,9 +22,7 @@ $cat = $_GET["cat"];
                     $product_data = $select_rs->fetch_assoc();
                     $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
                     $img_data = $img_rs->fetch_assoc();
-
                 ?>
-
                     <!-- card -->
                     <!-- <spin> -->
                     <div class=" col-12 col-lg-2 mt-2 mb-2 border border-1 shadow-lg bg-body-tertiary rounded" style="width: 18rem;">
