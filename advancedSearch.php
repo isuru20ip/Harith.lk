@@ -105,7 +105,7 @@ require "conection.php";
                     <div class="offset-lg-2 col-12 col-lg-8 bg-body rounded mb-3 mt-4">
                         <div class="row">
 
-                            <div class="offset-lg-1 col-12 col-lg-10 text-center">
+                            <div class=" col-12 text-center">
                                 <div class="row" id="view_area">
 
                                     <div class="offset-5 col-2 mt-5">
