@@ -969,7 +969,6 @@ function addtowatchlist(x) {
 
     r.open("GET", "addtowatchlistprocess.php?id=" + x, true);
     r.send();
-
 }
 
 function removetocart(x) {
@@ -981,6 +980,7 @@ function removetocart(x) {
             if (r.status == 200 && r.readyState == 4) {
                 var t = r.responseText;
                 if (t == 1) {
+                  
                     window.location.reload();
                 } else {
                     alert(t);
