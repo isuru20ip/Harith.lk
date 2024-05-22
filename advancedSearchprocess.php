@@ -69,6 +69,14 @@ if (!empty($text) || $category != 0 || !empty($from) || !empty($to)) {
         $query .= " ORDER BY `qty` DESC";
     }
 
+    if ($sort == 5) {
+        $query .= " ORDER BY `date_and_time` DESC";
+    }
+
+    if ($sort == 6) {
+        $query .= " ORDER BY `date_and_time` ASC";
+    }
+
 ?>
 
     <?php

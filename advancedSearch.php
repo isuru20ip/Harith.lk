@@ -90,6 +90,8 @@ require "conection.php";
                                             <option value="2">LOW TO HIGH</option>
                                             <option value="3">QTY LOW TO HIGH </option>
                                             <option value="4">QTY HIGH TO LOW</option>
+                                            <option value="5">NEWEST TO OLDEST</option>
+                                            <option value="6">OLDEST TO OLDEST</option>
                                         </select>
 
                                     </div>
