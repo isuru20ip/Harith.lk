@@ -139,7 +139,7 @@ if (!empty($text) || $category != 0 || !empty($from) || !empty($to)) {
                                 <div class=" col-12 text-center">
                                     <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
 
-                                    <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4">
+                                    <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);">
                                         <img src="resources/wish.svg" />
                                     </button>
                                 </div>
