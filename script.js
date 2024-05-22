@@ -1026,6 +1026,10 @@ function viweall(c) {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
             document.getElementById("basicSearchResult").innerHTML = t;
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+              });
         }
     }
 
