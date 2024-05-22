@@ -959,7 +959,7 @@ function addtowatchlist(x) {
 
             if (t == 1) {
                 alert("Product added to the watchlist successfully");
-                window.location.reload();
+                // window.location.reload();
 
             } else {
                 alert(t);
