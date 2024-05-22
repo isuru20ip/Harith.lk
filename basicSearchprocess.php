@@ -28,7 +28,7 @@ if (!empty($text) || $cat != 0) {
     $product_rs = Database::search($query);
     $product_num = $product_rs->num_rows;
 
-    $results_per_page = 1;
+    $results_per_page = 6;
     $number_of_page = ceil($product_num / $results_per_page);
 
     $page_rs = ($pageno - 1) * $results_per_page;
@@ -64,7 +64,7 @@ if (!empty($text) || $cat != 0) {
                                     <div class="card-body ms-0 m-0 ">
 
                                         <div class=" col-12 text-center mt-3">
-                                            <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
+                                            <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" onclick="addtocart(<?php echo $product_data['id']; ?>);">Add</a>
                                             <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
                                         </div>
 
