@@ -359,7 +359,7 @@ function basicsearch(x) {
             if (t != 'doNothing') {
                 document.getElementById("basicSearchResult").innerHTML = t;
             }
-            
+
         }
     }
 
@@ -936,8 +936,11 @@ function advancedSearch(x) {
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
-            document.getElementById("view_area").innerHTML = t;
-            // alert(t);
+            if (t != 'doNothing') {
+                document.getElementById("view_area").innerHTML = t;
+            }
+
+
         }
     }
 
@@ -1025,7 +1028,7 @@ function viweall(c) {
             document.getElementById("basicSearchResult").innerHTML = t;
         }
     }
-    
+
     r.open("GET", "viweall.php?cat=" + c, true);
     r.send();
 }
