@@ -84,12 +84,14 @@ require "conection.php";
                                 <div class=" row g-2">
 
                                     <div class=" col-12 col-lg-4 offset-lg-8 p-3">
-                                        <select id="s" class=" form-select">
+                                        <select id="s" class=" form-select" onchange="advancedSearch(0);">
                                             <option value="0">SHORT BY</option>
                                             <option value="1">HIGH TO LOW</option>
                                             <option value="2">LOW TO HIGH</option>
                                             <option value="3">QTY LOW TO HIGH </option>
                                             <option value="4">QTY HIGH TO LOW</option>
+                                            <option value="5">NEWEST TO OLDEST</option>
+                                            <option value="6">OLDEST TO OLDEST</option>
                                         </select>
 
                                     </div>
@@ -105,7 +107,7 @@ require "conection.php";
                     <div class="offset-lg-2 col-12 col-lg-8 bg-body rounded mb-3 mt-4">
                         <div class="row">
 
-                            <div class="offset-lg-1 col-12 col-lg-10 text-center">
+                            <div class=" col-12 text-center">
                                 <div class="row" id="view_area">
 
                                     <div class="offset-5 col-2 mt-5">
