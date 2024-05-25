@@ -232,6 +232,7 @@ function resetPs() {
 
 }
 
+// user log out
 function logout() {
 
     var r = new XMLHttpRequest();
@@ -259,33 +260,7 @@ function logout() {
     r.send();
 }
 
-function alogout() {
-
-    var r = new XMLHttpRequest();
-
-    r.onreadystatechange = function () {
-
-        if (r.status == 200 && r.readyState == 4) {
-            var t = r.responseText;
-
-            if (t == "done") {
-
-                // window.location.reload();
-                window.location = "Log_in.php.";
-
-            } else {
-
-                alert(t);
-                window.location.reload();
-
-            }
-        }
-    }
-
-    r.open("GET", "logoutprocess.php", true);
-    r.send();
-}
-
+//admin log out
 function alogout() {
 
     var r = new XMLHttpRequest();
