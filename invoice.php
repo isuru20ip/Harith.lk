@@ -38,7 +38,7 @@ require "conection.php";
                 <div class=" col-12 p-3 p-lg-5 ">
                     <div class=" row">
 
-                        <div class=" col-12 p-3 shadow-lg bg-body-tertiary rounded border">
+                        <div class="col-12 bg-body-tertiary rounded border p-3 overflow-x-auto">
 
                             <div class="col-12 btn-toolbar justify-content-end">
                                 <button class="btn btn-dark me-2"><i class="bi bi-printer-fill" onclick="printInvoice();"></i> Print</button>
