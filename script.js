@@ -944,29 +944,21 @@ function addtocart(pid) {
     r.send();
 }
 
-function addtocart2(pid) {
-
+// buynow Button Actions
+function buyNow(pid) {
 
     var qty = document.getElementById("qty_play");
-
 
     var r = new XMLHttpRequest();
 
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
-
             if (t == 1) {
-
                 window.location = "cart.php";
-
             } else {
-
                 alert(t);
-
             }
-
-
         }
     }
 
