@@ -378,17 +378,6 @@ function qty_dec() {
 
 }
 
-function viewSigleMoreImgs(im) {
-
-    var imge = document.getElementById(im);
-
-    var file = imge;
-    var url = window.URL.createObjectURL(file);
-    document.getElementById("mainImg").src = url;
-
-
-
-}
 function copyImage(im) {
     var imge = document.getElementById(im);
     var mainImg = document.getElementById('mainImg');
