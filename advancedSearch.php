@@ -86,8 +86,8 @@ require "conection.php";
                                     <div class=" col-12 col-lg-4 offset-lg-8 p-3">
                                         <select id="s" class=" form-select" onchange="advancedSearch(0);">
                                             <option value="0">SHORT BY</option>
-                                            <option value="1">HIGH TO LOW</option>
-                                            <option value="2">LOW TO HIGH</option>
+                                            <option value="1">PRICE HIGH TO LOW</option>
+                                            <option value="2">PRICE LOW TO HIGH</option>
                                             <option value="3">QTY LOW TO HIGH </option>
                                             <option value="4">QTY HIGH TO LOW</option>
                                             <option value="5">NEWEST TO OLDEST</option>
