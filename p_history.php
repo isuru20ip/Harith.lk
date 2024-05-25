@@ -38,7 +38,7 @@ require "conection.php";
                 <div class=" col-12 p-3 p-md-5 ">
                     <div class=" row">
 
-                        <div class="col-12 bg-body-tertiary rounded border p-3 overflow-x-auto">
+                        <div class="col-12 bg-body-tertiary rounded border p-3 ">
 
                             <?php
 
@@ -77,7 +77,7 @@ require "conection.php";
                                 <span><?php echo $city_data["city_name"]; ?></span> <br />
                             </div>
 
-                            <div class=" col-12 mt-5">
+                            <div class=" col-12 mt-5 overflow-x-auto">
                                 <table class=" table table-info table-striped ">
                                     <tr>
                                         <th class="opacity-2">#</th>
@@ -156,35 +156,11 @@ require "conection.php";
 
                                 </table>
 
-                                <div class=" col-12 d-flex justify-content-end">
-                                    <div class="row">
+                            </div>
 
-                                        <div class=" col-12 d-inline-flex">
-                                            <div class="row g-2">
-
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <span class=" card text-center text-bg-warning rounded-pill p-1"> <a href="feedback.php?id=<?php echo $oid  ?>" style="text-decoration: none; color:black;">Go</a></span>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <div class="row">
-                                                        <span class=" card text-center text-bg-danger text-black rounded-pill p-1" style="cursor: pointer;" onclick="deleteHistory('<?php echo $oid ?>');"> delete</span>
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
+                            <div class="d-flex flex-row-reverse fw-bold">
+                                <div class="p-2 text-bg-danger" style="cursor: pointer;" onclick="deleteHistory('<?php echo $oid ?>');" >Delete History</div>
+                                <div class="p-2 text-bg-warning"><a href="feedback.php?id=<?php echo $oid  ?>" style="text-decoration: none; color:black;">Write feedback</a></div>
                             </div>
 
                         </div>

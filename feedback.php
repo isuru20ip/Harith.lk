@@ -29,17 +29,16 @@ if (isset($_SESSION["user"])) {
 
                 <?php require "header.php"; ?>
 
-                <div class=" col-12 p-5 pt-3">
+                <div class=" col-12 p-3 p-md-5 pt-3">
                     <div class=" row">
 
-                        <div class=" col-12 text-center fw-bold fs-2">
-                            <label class=" form-label">feedback</label>
-                        </div>
+                        <div class=" col-12 col-lg-6 offset-lg-3 card p-3 shadow shadow-lg">
 
-                        <div class=" col-12 card p-3">
+                            <div class=" col-12 text-center fw-bold fs-2">
+                                <label class=" form-label">feedback</label>
+                            </div>
 
-
-                            <div class="col">
+                            <div class=" col-12">
 
                                 <select class=" form-select fw-bold" id="pid">
                                     <option value="0">Select Product</option>
@@ -74,34 +73,21 @@ if (isset($_SESSION["user"])) {
                                 </div>
 
                                 <!-- <div class=" row"> -->
-                                <div class=" col-12 border border-1 border-black rounded-3">
+                                <div class=" col-12 d-flex justify-content-center">
 
-                                    <div class="col-12">
+                                    <label for="pimg">
+                                        <img src="resources/up.png" class="img-fluid" style="width: 250px; cursor: pointer;" id="i0" onclick="changeProductImage();" />
+                                    </label>
 
-                                        <div class="offset-lg-5 col-12 col-lg-6">
-                                            <div class="row">
-
-                                                <div class=" col-12 col-lg-4 border border-primary rounded">
-                                                    <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i">
-                                                </div>
-                                                <input type="file" id="pimg" hidden>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- <div class=" row"> -->
-                                <div class="col-12 text-center">
-                                    <label class=" col-12 col-lg-4 form-label fw-bold btn btn-info mt-2" for="pimg" onclick="changeProductImage();">Uploard Images</label>
+                                    <input type="file" id="pimg" hidden>
                                 </div>
 
                             </div>
 
+                            <div class="col-12 text-end">
+                            <label class="form-label fw-bold btn btn-warning mt-2" onclick="sendfeedback();">Send Feedback</label>
                         </div>
 
-                        <div class="col-12 text-center">
-                            <label class=" col-12 form-label fw-bold btn btn-warning mt-2" onclick="sendfeedback();">Send Feedback</label>
                         </div>
 
                     </div>
