@@ -77,7 +77,7 @@ $pageno;
                                 </div>
                             </div>
 
-                            <div class=" col-12 mt-2 border rounded-2 p-2">
+                            <div class=" col-12 mt-2 border rounded-2">
                                 <div class=" row">
 
 
@@ -181,7 +181,7 @@ $pageno;
                     </div>
                 </div>
                 <!------------------------------------------------------------------------------------------->
-                <div class=" col-12 col-lg-6 p-4 border">
+                <div class=" col-12 col-lg-6 border">
                     <div class=" row">
                         <!---->
 
@@ -214,7 +214,7 @@ $pageno;
                                 $hisory_rs = Database::search("SELECT DISTINCT `order_id` FROM `invoice` WHERE `user_email` = '" . $email . "' ");
                                 $hisory_num = $hisory_rs->num_rows;
 
-                                $results_per_page = 2;
+                                $results_per_page = 10;
                                 $number_of_pages = ceil($hisory_num / $results_per_page);
 
                                 $page_rs = ($pageno - 1) * $results_per_page;
