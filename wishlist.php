@@ -60,7 +60,7 @@ if (isset($_SESSION["user"])) {
                                 </div>
 
 
-                                <div class=" col-12 p-5" style="background-color: #E9EbEE;">
+                                <div class=" col-12  p-lg-5" style="background-color: #E9EbEE;">
 
                                     <div class=" col-12 card p-3 border border-2 border-black my-3">
 

@@ -35,7 +35,7 @@ require "conection.php";
 
             ?>
 
-                <div class=" col-12 p-5 ">
+                <div class=" col-12 p-3 p-lg-5 ">
                     <div class=" row">
 
                         <div class=" col-12 p-3 shadow-lg bg-body-tertiary rounded border">

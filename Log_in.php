@@ -24,14 +24,16 @@
 
                     <div class=" col-md-12 col-lg-6">
 
-                        <div class="p-5 d-flex justify-content-center bg-white h-100 card border-0">
+                        <div class=" p-4 p-md-5 d-flex justify-content-center bg-white h-100 card border-0">
                             <div class=" row align-items-center g-3">
 
-                                <div class=" col-12 ">
+                                <div class=" col-12">
                                     <h1 class=" fw-bold form-label fs-1">Log-In</h1>
                                 </div>
 
-
+                                <div class=" d-md-none my-0">
+                                    <hr>
+                                </div>
 
                                 <div class=" col-12">
                                     <div class=" row">

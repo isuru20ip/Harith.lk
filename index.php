@@ -108,7 +108,7 @@ require "conection.php";
 
                     <!-- Home -->
 
-                    <div class=" col-12 p-5" style="background-color: #E9EbEE;">
+                    <div class=" col-12 p-sm-0 p-md-5" style="background-color: #E9EbEE;">
 
                         <?php
 
