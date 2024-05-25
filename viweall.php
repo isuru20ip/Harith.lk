@@ -32,7 +32,7 @@ $name = $catData->fetch_assoc();
                         <div class="card-body ms-0 m-0 ">
 
                             <div class=" col-12 text-center mt-3">
-                                <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold">Add</a>
+                                <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" onclick="addtocart(<?php echo $product_data['id']; ?>);">Add</a>
                                 <a href="<?php echo "singleProductView.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold">Viwe</a>
                             </div>
 
@@ -43,7 +43,7 @@ $name = $catData->fetch_assoc();
                             <div class=" col-12 text-center">
                                 <span class="card-text text-danger fw-bold">Rs.<?php echo $product_data["price"]; ?>.00</span><br />
 
-                                <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4">
+                                <button class="col-10 btn btn-outline-light mt-3 border border-2 border-warning mb-4" onclick="addtowatchlist(<?php echo $product_data['id']; ?>);" >
                                     <img src="resources/wish.svg" />
                                 </button>
                             </div>
