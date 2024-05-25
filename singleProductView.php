@@ -6,15 +6,18 @@ if (isset($_GET["id"])) {
 
     $pid = $_GET["id"];
 
-    $product_rs = Database::search("SELECT product.title,product.description,product.price,product.id,product.delivery_fee,product.qty,status.status_name AS sname,category.category_name AS cname, product.category_id AS id FROM product
-        INNER JOIN category ON  category.id = product.category_id
+    $product_rs = Database::search("SELECT product.title,product.description,product.price,product.id,product.delivery_fee,product.qty,status.status_name AS sname FROM product
         INNER JOIN status ON status.status_id = product.status_status_id
         WHERE product.id = '" . $pid . "'");
+
+        $cat_rs = Database::search(" SELECT category.id AS catId, category.category_name AS catName FROM `category` INNER JOIN `product` ON  product.category_id = category.id WHERE product.id = '".$pid."' ");
 
     $product_num = $product_rs->num_rows;
 
     if ($product_num == '1') {
         $product_data = $product_rs->fetch_assoc();
+        $cat_data = $cat_rs->fetch_assoc();
+
 
 ?>
 
@@ -47,7 +50,7 @@ if (isset($_GET["id"])) {
                     <div class="col-12 p-3" id="basicSearchResult">
 
                         <div class="col-12 mt-1 ms-3 fw-bold mb-2">
-                            <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> <span onclick="viweall('<?php echo $product_data['id']  ?>');" class=" text-primary" style=" cursor: pointer;"><?php echo $product_data["cname"]; ?> ></span> <!-- --> <span><?php echo $product_data["title"];  ?></span>
+                            <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> <span onclick="viweall('<?php echo $cat_data['catId']  ?>');" class=" text-primary" style=" cursor: pointer;"><?php echo $cat_data["catName"]; ?> ></span> <!-- --> <span><?php echo $product_data["title"];  ?></span>
                         </div>
 
                         <div class="card mb-3 shadow shadow-lg">
