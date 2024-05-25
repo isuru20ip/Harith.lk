@@ -858,7 +858,7 @@ function removetocart(x) {
             if (r.status == 200 && r.readyState == 4) {
                 var t = r.responseText;
                 if (t == 1) {
-                  
+
                     window.location.reload();
                 } else {
                     alert(t);
@@ -885,9 +885,12 @@ function findlist(x) {
     r.onreadystatechange = function () {
         if (r.status == 200 && r.readyState == 4) {
             var t = r.responseText;
+            //alert(t);
+            if (t != 'doNothing') {
+                document.getElementById("view_area").innerHTML = t;
+            }
 
-            document.getElementById("view_area").innerHTML = t;
-            // alert(t);
+
         }
     }
 
@@ -907,7 +910,7 @@ function viweall(c) {
             window.scrollTo({
                 top: 0,
                 behavior: 'instant'
-              });
+            });
         }
     }
 
