@@ -38,7 +38,7 @@ require "conection.php";
                 <div class=" col-12 p-3 p-lg-5 ">
                     <div class=" row">
 
-                        <div class="col-12 bg-body-tertiary rounded border p-3 overflow-x-auto">
+                        <div class="col-12 bg-body-tertiary rounded border border-black p-3">
 
                             <div class="col-12 btn-toolbar justify-content-end">
                                 <button class="btn btn-dark me-2"><i class="bi bi-printer-fill" onclick="printInvoice();"></i> Print</button>
@@ -87,7 +87,7 @@ require "conection.php";
                                     <span><?php echo $city_data["city_name"]; ?></span> <br />
                                 </div>
 
-                                <div class=" col-12 mt-5">
+                                <div class=" col-12 mt-5  overflow-x-auto">
                                     <table class=" table table-info table-striped ">
                                         <tr>
                                             <th class="opacity-2">#</th>
@@ -171,7 +171,7 @@ require "conection.php";
                                     <span>Thank You!</span>
                                 </div>
 
-                                <div class="col-12 mt-3 mb-3 border-0 border-start border-5 border-danger rounded" style="background-color: #ffe7e7;">
+                                <div class="col-12 mt-3 mb-3 border-0 border-start border-5 border-danger rounded " style="background-color: #ffe7e7;">
                                     <div class="row">
                                         <div class="col-12 mt-3 mb-3">
                                             <label class="form-label fs-5 fw-bold">NOTICE : </label>
@@ -184,11 +184,11 @@ require "conection.php";
                                 <div class=" col-12 fw-bold text-end">
                                     <div class=" col-12">
                                         <h3 class=" mb-2 text-decoration-underline">
-                                            Ayuna.lk
+                                        Haritha.lk
 
                                         </h3>
                                         <span>No-45/B, Colombo 7, Sri Lanka</span> <br />
-                                        <span>Ayuna@gmail.com</span> <br />
+                                        <span>Haritha@gmail.com</span> <br />
                                         <span>+94112 875 2365</span> <br />
                                     </div>
 
