@@ -47,13 +47,15 @@ if (isset($_GET["id"])) {
                     <?php require "header.php"; ?>
 
                     <!-- content -->
-                    <div class="col-12 p-3" id="basicSearchResult">
+                    <div class="col-12 p-md-3">
 
-                        <div class="col-12 mt-1 ms-3 fw-bold mb-2">
-                            <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> <span onclick="viweall('<?php echo $cat_data['catId']  ?>');" class=" text-primary" style=" cursor: pointer;"><?php echo $cat_data["catName"]; ?> ></span> <!-- --> <span><?php echo $product_data["title"];  ?></span>
+                        <div class="col-12 mt-1 ms-md-3 fw-bold mb-2">
+                            <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> 
+                            <span onclick="viweall('<?php echo $cat_data['catId']  ?>');" class=" text-primary" style=" cursor: pointer;"><?php echo $cat_data["catName"]; ?> ></span> <!-- --> 
+                            <span><?php echo $product_data["title"];  ?></span>
                         </div>
 
-                        <div class="card mb-3 shadow shadow-lg">
+                        <div class="card mb-3 shadow shadow-lg border border-black">
                             <div class="row g-0">
                                 <?php
                                 $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $pid . "'");
@@ -73,8 +75,8 @@ if (isset($_GET["id"])) {
                                         <?php
                                         for ($i = 0; $i < $pimg_num; $i++) {
                                         ?>
-                                            <div class=" col-4 col-md-12">
-                                                <div class="card" style="width: 110px; cursor: pointer;">
+                                            <div class="col-4 col-md-12">
+                                                <div class="card" style="width: 90px; cursor: pointer;">
                                                     <img src="<?php echo $img[$i] ?>" class="card-img-top" id="img<?php echo $i ?>" onclick="copyImage('img<?php echo $i ?>')">
                                                 </div>
                                             </div>
@@ -110,17 +112,17 @@ if (isset($_GET["id"])) {
 
                                             <div class=" col-12">
                                                 <div class="row">
-                                                    <div class="col-4 col-md-1 offset-md-4">
+                                                    <div class="col-4 col-lg-1 offset-lg-4">
                                                         <div class="row g-1">
                                                             <h3 class=" border-1 bg-warning text-center" onclick="qty_dec();"> - </i></h3>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4 col-md-2">
+                                                    <div class="col-4 col-lg-2">
                                                         <div class="row g-1">
                                                             <input type="text" class=" text-center border-1 bg-body-secondary p-1" pattern="[0-9]" value="1" id="qty_play" disabled />
                                                         </div>
                                                     </div>
-                                                    <div class=" col-4 col-md-1">
+                                                    <div class=" col-4 col-lg-1">
                                                         <div class="row g-1">
                                                             <h3 class="border-1 bg-success text-center" onclick="qty_inc(<?php echo $product_data['qty']; ?>);"> + </i></h3>
                                                         </div>
