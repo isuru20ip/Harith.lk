@@ -36,11 +36,11 @@ $pageno;
 
             ?>
 
-                <div class=" col-12 col-lg-6 p-4">
+                <div class=" col-12 col-lg-6 p-md-4">
                     <div class=" row">
                         <!---->
 
-                        <div class=" col-12 mt-3">
+                        <div class=" col-12 mt-3 p-3">
                             <div class=" row">
 
                                 <div class=" col-12 text-center">
@@ -190,14 +190,14 @@ $pageno;
                         </div>
 
                         <!--table-md-->
-                        <div class=" col-12 mt-3">
-                            <table class="table border border-2">
-                                <thead class="thead-dark">
+                        <div class=" col-12 mt-3 table-responsive">
+                            <table class="table border ">
+                                <thead>
                                     <tr>
-                                        <th scope="col">Order ID</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Actions</th>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Qty</th>
+                                        <th>Actions</th>
 
                                     </tr>
                                 </thead>
@@ -236,16 +236,11 @@ $pageno;
                                 ?>
                                     <tbody>
                                         <tr>
-                                            <th scope="row"><?php echo $cart_data["order_id"] ?></th>
+                                            <th><?php echo $cart_data["order_id"] ?></th>
                                             <td><?php echo date('Y-m-d', strtotime($cart_data["date"]))  ?></td>
                                             <td><?php echo $cart_data["item_count"] ?></td>
-
                                             <td>
-                                                <span class=" card text-center text-bg-info rounded-pill"> <a href="p_history.php?id=<?php echo $cart_data["order_id"] ?>" style="text-decoration: none; color:black;">viwe</a></span>
-                                            </td>
-
-                                            <td>
-                                                
+                                                <span class=" text-center text-bg-info p-1 rounded"> <a href="p_history.php?id=<?php echo $cart_data["order_id"] ?>" style="text-decoration: none; color:black;">viwe</a></span>
                                             </td>
                                         </tr>
                                     </tbody>
