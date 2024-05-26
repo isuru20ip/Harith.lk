@@ -22,7 +22,33 @@ if (isset($_SESSION["user"])) {
                 $pageno = 1;
             }
 
-            $product_rs = Database::search($query);
+            try {
+                $product_rs = Database::search($query);
+            } catch (\Throwable $th) {
+                ?>
+                        <div class=" row">
+                            <div class=" col-12  text-center card">
+                                <div class=" row">
+
+                                    <div class="offset-1 col-10 text-center p-5">
+                                        <div class="row justify-content-center">
+
+                                            <h1 class=" fw-bold fs-1">An Error Occupied</h1>
+                                            <a href="index.php" class=" fw-bold">Try Again</a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <?php
+                        die;
+            }
+
+           
             $product_num = $product_rs->num_rows;
 
             $results_per_page = 6;
