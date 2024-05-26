@@ -104,7 +104,7 @@ if (!empty($text) || $category != 0 || !empty($from) || !empty($to)) {
                                     <div class="offset-1 col-10 text-center p-5">
                                         <div class="row justify-content-center">
 
-                                            <h1 class=" fw-bold fs-1">An Error Occupied</h1>
+                                            <h1 class=" fw-bold fs-1">An Error occurs</h1>
                                             <a href="index.php" class=" fw-bold">Try Again</a>
 
                                         </div>

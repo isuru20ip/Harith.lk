@@ -122,7 +122,7 @@ if (isset($_SESSION["user"])) {
                 echo ("You are not valid user ");
             }
         } catch (\Throwable $th) {
-            echo('Some thing went wrong Please Try again');
+            echo('error occurs, Process can be continued');
         }
     }
 }

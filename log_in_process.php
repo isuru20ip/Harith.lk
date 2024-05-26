@@ -18,7 +18,13 @@ if (empty($email)) {
 } elseif (strlen($password) < 5 || strlen($password) > 20) {
     echo ("password should be between 20 and 5 characters");
 } else {
-    $user_rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
+    try {
+        $user_rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
+    } catch (\Throwable $th) {
+        echo('error occurs <a href="Log_in.php">Try Again</a>');
+        die;
+    }
+   
     $user_count = $user_rs->num_rows;
 
     if ($user_count == 1) {
