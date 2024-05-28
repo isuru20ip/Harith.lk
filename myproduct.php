@@ -156,6 +156,16 @@ if (isset($_SESSION["admin"])) {
 
                         <!-- product -->
                         <div class="col-12 col-lg-9 mt-3 mb-3 bg-white">
+                            <div class=" col-9 mt-5 mb-0 ms-lg-3">
+                                <div class="row">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="control_panel.php">Control Panel</a></li>
+                                            <li class="breadcrumb-item active fw-bold" aria-current="page">My product</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
                             <div class="row" id="sort">
 
                                 <div class="offset-1 col-10 text-center">
@@ -211,15 +221,15 @@ if (isset($_SESSION["admin"])) {
                                                     </div>
 
                                                     <div class=" col-12 mt-3 text-center form-switch">
-                                                        <input class="form-check-input" type="checkbox" role="switch" id="fd<?php echo $product_data["id"]; ?>" onchange="changeStatus(<?php echo $product_data['id']; ?>);" <?php if($product_data["status_status_id"] == 2){ ?> checked <?php } ?> />
-                                                        <?php 
-                                                        if ($product_data["status_status_id"] == 1 ) {
-                                                            ?><label class="form-check-label fw-bold text-primary"> Active </label><?php
-                                                        }else{
-                                                            ?><label class="form-check-label fw-bold text-danger"> Deactivate </label><?php
-                                                        }
-                                                        ?>
-                                                        
+                                                        <input class="form-check-input" type="checkbox" role="switch" id="fd<?php echo $product_data["id"]; ?>" onchange="changeStatus(<?php echo $product_data['id']; ?>);" <?php if ($product_data["status_status_id"] == 2) { ?> checked <?php } ?> />
+                                                        <?php
+                                                        if ($product_data["status_status_id"] == 1) {
+                                                        ?><label class="form-check-label fw-bold text-primary"> Active </label><?php
+                                                                                                                            } else {
+                                                                                                                                ?><label class="form-check-label fw-bold text-danger"> Deactivate </label><?php
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                                ?>
+
                                                     </div>
 
                                                 </div>
