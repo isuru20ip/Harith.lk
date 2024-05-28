@@ -22,7 +22,7 @@ if (isset($_SESSION["p"])) {
     </head>
 
     <body>
-        <div class=" container-fluid bg-body-tertiary">
+        <div class=" container-fluid bg-success-subtle">
             <div class=" row">
 
                 <?php require "cpanal_head.php"; ?>
@@ -32,16 +32,27 @@ if (isset($_SESSION["p"])) {
                 $product_rs = Database::search("SELECT * FROM `product` INNER JOIN `category` ON category.id = product.category_id WHERE product.id = '" . $pid . "'");
                 $product_data = $product_rs->fetch_assoc();
                 ?>
+                <div class=" col-10 mt-5 mb-0 ms-lg-3">
+                    <div class="row">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="control_panel.php">Control Panel</a></li>
+                                <li class="breadcrumb-item"><a href="myproduct.php">My product</a></li>
+                                <li class="breadcrumb-item active fw-bold" aria-current="page">Update Product [<?php echo $product_data["title"]; ?>]</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
 
-                <div class=" col-12 col-lg-6 offset-lg-3 card my-5 shadow shadow-lg">
+
+                <div class=" col-12 col-lg-10 offset-lg-1 card mb-5 mt-0 shadow shadow-lg border-black">
                     <div class="row">
 
                         <div class=" col-12 text-center">
                             <h3 class="fw-bold p-2 rounded-2 "> Update Product</h3>
-                            <hr />
                         </div>
 
-                        <div class=" col-12">
+                        <div class=" col-12 col-lg-6 border-black border-end border-top border-bottom">
                             <!-- <div class=" row"> -->
 
                             <div class=" col-12 p-3">
@@ -64,7 +75,7 @@ if (isset($_SESSION["p"])) {
                                 <input type="text" class=" form-control border border-1 border-black" id="dfee" value="<?php echo $product_data["delivery_fee"]; ?>" />
                             </div>
 
-                            <div class=" col-12 p-3">
+                            <div class=" col-12 p-3 ">
                                 <label class=" form-label fw-bold"> Product Category </label>
 
                                 <div class="col-12">
@@ -87,42 +98,50 @@ if (isset($_SESSION["p"])) {
 
                                 </div>
                             </div>
-
-                            <!-- <div class=" row"> -->
-                            <div class=" col-12 p-3">
-                                <label class="form-label fw-bold">Product Description</label>
-                                <div class="col-12">
-                                    <textarea cols="30" rows="19" class=" form-control" id="desc"><?php echo $product_data["description"]; ?></textarea>
-                                </div>
-                            </div>
-
-                            <!-- <div class=" row"> -->
-                            <div class=" col-12 p-3">
-                                <label class="form-label fw-bold">Product Images</label>
-
-                                <?php
-                                $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE product_id = '" . $pid . "'");
-                                $pimg_num = $pimg_rs->num_rows;
-
-                                for ($i = 0; $i < 3; $i++) {
-                                    $pimg_data = $pimg_rs->fetch_assoc();
-                                ?>
-                                    <div class=" col-12 d-flex justify-content-center border">
-                                        <?php
-                                        if (isset($pimg_data["p_path"])) {
-                                        ?>
-                                            <img src="<?php echo $pimg_data["p_path"]; ?>" style="width: 250px; height : 250px;" id="i<?php echo $i; ?>">
-                                        <?php
-                                        } else {
-                                        ?><img src="resources/up.png" style="width: 250px; height : 250px;" id="i<?php echo $i; ?>"><?php
-                                                                                                                                } ?>
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                                <input type="file" id="pimg" multiple hidden>
+                        </div>
+                        <!-- <div class=" row"> -->
+                        <div class=" col-12 col-lg-6 p-3 border-top border-bottom border-black">
+                            <label class="form-label fw-bold">Product Description</label>
+                            <div class="col-12">
+                                <textarea cols="30" rows="19" class=" form-control" id="desc"><?php echo $product_data["description"]; ?></textarea>
                             </div>
                         </div>
+
+                        <!-- <div class=" row"> -->
+                        <div class=" col-12 p-3">
+                            <label class="form-label fw-bold">Product Images</label>
+
+                            <div class=" col-12 d-flex justify-content-center">
+                                <div class="row">
+
+                                    <?php
+                                    $pimg_rs = Database::search("SELECT * FROM `p_img` WHERE product_id = '" . $pid . "'");
+                                    $pimg_num = $pimg_rs->num_rows;
+
+                                    for ($i = 0; $i < 3; $i++) {
+                                        $pimg_data = $pimg_rs->fetch_assoc();
+                                    ?>
+                                        <div class=" col border">
+                                            <?php
+                                            if (isset($pimg_data["p_path"])) {
+                                            ?>
+                                                <img src="<?php echo $pimg_data["p_path"]; ?>" style="width: 250px; height : 250px;" id="i<?php echo $i; ?>">
+                                            <?php
+                                            } else {
+                                            ?><img src="resources/up.png" style="width: 250px; height : 250px;" id="i<?php echo $i; ?>"><?php
+                                                                                                                            } ?>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+
+                            </div>
+
+
+                            <input type="file" id="pimg" multiple hidden>
+                        </div>
+
 
 
                         <div class="col-12 d-flex justify-content-end ">
