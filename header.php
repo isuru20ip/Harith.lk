@@ -32,15 +32,8 @@
                             </ul>
                         </li>
                     <?php
-                    } else {
-
-                    ?>
-                        <li class="nav-item">
-                            <a href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page">Login</a>
-                        <?php
                     }
-                        ?>
-                        </li>
+                    ?>
                 </ul>
 
                 <form class="d-flex">
@@ -53,7 +46,7 @@
                             <?php
                             } else {
                             ?>
-                                <span href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page" style="cursor:pointer;">Wishlist</span>
+                                <a href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page">Wishlist</a>
                             <?php
                             }
                             ?>
@@ -67,7 +60,7 @@
                             <?php
                             } else {
                             ?>
-                                <span href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page" style="cursor:pointer;">Account</span>
+                                <a href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page" style="cursor:pointer;">Account</a>
                             <?php
                             }
                             ?>
@@ -80,7 +73,7 @@
                             <?php
                             } else {
                             ?>
-                                <span href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page" style="cursor:pointer;"><img src="resources/cartico.svg" style="height: 25px; cursor: pointer;"></span>
+                                <a href="Log_in.php" class="nav-link active text-white fw-bold" aria-current="page" style="cursor:pointer;"><img src="resources/cartico.svg" style="height: 25px; cursor: pointer;"></a>
                             <?php
                             }
                             ?>

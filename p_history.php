@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 require "conection.php";
 ?>
 <!DOCTYPE html>
@@ -22,8 +23,6 @@ require "conection.php";
         <div class=" row">
 
             <?php include "header.php";
-
-
 
             if (isset($_SESSION["user"])) {
 
@@ -159,7 +158,7 @@ require "conection.php";
                             </div>
 
                             <div class="d-flex flex-row-reverse fw-bold">
-                                <div class="p-2 text-bg-danger" style="cursor: pointer;" onclick="deleteHistory('<?php echo $oid ?>');" >Delete History</div>
+                                <div class="p-2 text-bg-danger" style="cursor: pointer;" onclick="deleteHistory('<?php echo $oid ?>');">Delete History</div>
                                 <div class="p-2 text-bg-warning"><a href="feedback.php?id=<?php echo $oid  ?>" style="text-decoration: none; color:black;">Write feedback</a></div>
                             </div>
 
@@ -171,6 +170,15 @@ require "conection.php";
 
             <?php
 
+            } else {
+            ?>
+                <div class=" col-12 text-center p-5 m-5">
+
+                    <a class=" btn btn-success col-3 text-decoration-none" href="Log_in.php">
+                        <h1 class=" text-warning"> Login or Register</h1>
+                    </a>
+                </div>
+            <?php
             }
 
             ?>
@@ -179,7 +187,8 @@ require "conection.php";
         </div>
     </div>
 
-
+    <script src="script.js"></script>
+    <script src="bootstrap.bundle.js"></script>
 </body>
 
 </html>
