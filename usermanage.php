@@ -90,27 +90,6 @@ if (isset($_SESSION["admin"])) {
                                             </div>
                                         </div>
 
-                                        <!-- <div class="col-12 mt-3">
-                                            <label class="form-label fw-bold">By Purchased Quantity</label>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="r2" id="high" />
-                                                <label class="form-check-label" for="high">
-                                                    High to low
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="r2" id="low" />
-                                                <label class="form-check-label" for="low">
-                                                    Low to high
-                                                </label>
-                                            </div>
-                                        </div> -->
 
                                         <div class="col-12 mt-3">
                                             <label class="form-label fw-bold">Status</label>
@@ -163,9 +142,20 @@ if (isset($_SESSION["admin"])) {
 
                         <!-- product -->
                         <div class="col-12 col-lg-9 mt-3 mb-3 bg-white">
+                            <div class=" col-9 mt-5 mb-0 ms-lg-3">
+                                <div class="row">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="control_panel.php">Control Panel</a></li>
+                                            <li class="breadcrumb-item active fw-bold" aria-current="page">User Manage</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
                             <div class="row" id="sort">
 
                                 <div class="offset-1 col-10 text-center">
+
                                     <div class="row justify-content-center">
 
                                         <?php
