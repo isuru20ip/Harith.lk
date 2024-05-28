@@ -662,19 +662,15 @@ function sendId(id) {
 function updateproduct() {
 
     var pname = document.getElementById("pname");
-    // var price = document.getElementById("price");
     var qty = document.getElementById("qty");
     var dfree = document.getElementById("dfee");
-    // var category = document.getElementById("pcat");
     var desc = document.getElementById("desc");
     var pimg = document.getElementById("pimg");
 
     var f = new FormData();
     f.append("pname", pname.value);
-    // f.append("price", price.value);
     f.append("qty", qty.value);
     f.append("dfee", dfree.value);
-    // f.append("cat", category.value);
     f.append("des", desc.value);
 
     var file_count = pimg.files.length;
