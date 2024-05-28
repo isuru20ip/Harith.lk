@@ -196,6 +196,7 @@ if (isset($_SESSION["admin"])) {
 
         </div>
         <script src="script.js"></script>
+        <script src="bootstrap.bundle.js"></script>
     </body>
 
     </html>
