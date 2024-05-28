@@ -1,34 +1,34 @@
 <?php
 session_start();
 require "conection.php";
-
-if (isset($_SESSION["user"])) {
-    $umail = $_SESSION["user"]["email"];
 ?>
-    <!DOCTYPE html>
-    <html>
+<!DOCTYPE html>
+<html>
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Wishlist | Haritha.lk | Enriching Age</title>
+    <title>Wishlist | Haritha.lk | Enriching Age</title>
 
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="bootstrap.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link rel="icon" href="resources/favicon.svg">
-    </head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="resources/favicon.svg">
+</head>
 
-    <body>
+<body>
 
-        <div class="container-fluid">
-            <div class="row">
+    <div class="container-fluid">
+        <div class="row">
 
-                <?php include "header.php";
+            <?php include "header.php";
 
-                ?>
+            if (isset($_SESSION["user"])) {
+                $umail = $_SESSION["user"]["email"];
+
+            ?>
 
                 <div class="col-12">
                     <div class="row">
@@ -70,13 +70,13 @@ if (isset($_SESSION["user"])) {
                                             <div class="row ">
 
                                                 <div class="col-12" id="view_area">
-                                                    <div class="row justify-content-center gap-2" >
+                                                    <div class="row justify-content-center gap-2">
 
                                                         <?php
 
                                                         $product_rs = Database::search("SELECT * FROM `watchlist` 
                                                         INNER JOIN `product` ON product.id = watchlist.product_id 
-                                                        INNER JOIN `user` ON user.email = watchlist.user_email WHERE watchlist.user_email = '".$umail."'");
+                                                        INNER JOIN `user` ON user.email = watchlist.user_email WHERE watchlist.user_email = '" . $umail . "'");
                                                         $product_num = $product_rs->num_rows;
 
                                                         if ($product_num >= 1) {
@@ -171,21 +171,29 @@ if (isset($_SESSION["user"])) {
                         </div>
                     </div>
                 </div>
+            <?php
+            } else {
+            ?>
+                <div class=" col-12 text-center p-5 m-5">
 
-                <?php include "footer.php"; ?>
+                    <a class=" btn btn-success col-3 text-decoration-none" href="Log_in.php">
+                        <h1 class=" text-warning"> Login or Register</h1>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+            <?php include "footer.php"; ?>
 
-            </div>
         </div>
+    </div>
 
-        <script src="bootstrap.bundle.js"></script>
-        <script src="script.js"></script>
-    </body>
+    <script src="bootstrap.bundle.js"></script>
+    <script src="script.js"></script>
+</body>
 
-    </html>
+</html>
 
-    <?php
-
-    ?>
 <?php
-}
+
 ?>

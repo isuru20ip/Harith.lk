@@ -109,15 +109,15 @@ require "conection.php";
                                                                 </div>
 
                                                                 <div class=" col-6">
-                                                                   <div class="row g-1">
-                                                                   <input type="text" class="text-center border-black fw-bold" pattern="[0-9]" value="<?php echo $cart_data["qty"]; ?>" id="qty_play<?php echo $i ?>" disabled />
-                                                                   </div>
+                                                                    <div class="row g-1">
+                                                                        <input type="text" class="text-center border-black fw-bold" pattern="[0-9]" value="<?php echo $cart_data["qty"]; ?>" id="qty_play<?php echo $i ?>" disabled />
+                                                                    </div>
                                                                 </div>
 
                                                                 <div class="col-3">
-                                                                   <div class="row g-1">
-                                                                   <button class="fw-bold" onclick="cart_qty_inc(<?php echo $product_data['qty']; ?>, <?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> + </i></button>
-                                                                   </div>
+                                                                    <div class="row g-1">
+                                                                        <button class="fw-bold" onclick="cart_qty_inc(<?php echo $product_data['qty']; ?>, <?php echo $i; ?>,<?php echo $product_data['id']; ?>)"> + </i></button>
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -217,13 +217,22 @@ require "conection.php";
                         ?>
 
 
-<!-- coment -->
+                        <!-- coment -->
 
 
                     </div>
                 </div>
 
-            <?php }
+            <?php } else {
+            ?>
+                <div class=" col-12 text-center p-5 m-5">
+
+                    <a class=" btn btn-success col-3 text-decoration-none" href="Log_in.php">
+                        <h1 class=" text-warning"> Login or Register</h1>
+                    </a>
+                </div>
+            <?php
+            }
             require "footer.php"; ?>
 
         </div>
