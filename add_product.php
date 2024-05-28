@@ -22,24 +22,31 @@ if (isset($_SESSION["admin"])) {
     </head>
 
     <body>
-        <div class=" container-fluid ">
+        <div class=" container-fluid bg-success-subtle">
             <div class=" row">
 
                 <?php require "cpanal_head.php"; ?>
 
-                <div class=" col-12 bg-secondary-subtle ">
+                <div class=" col-10 mt-5 mb-0 ms-lg-3">
+                    <div class="row">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="control_panel.php">Control Panel</a></li>
+                                <li class="breadcrumb-item active fw-bold" aria-current="page">Add Product</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-lg-10 offset-lg-1 card mb-5 mt-0 shadow shadow-lg border-black">
                     <div class=" row">
 
-                        <div class=" col-12">
-                            <div class=" row">
-                                <div class=" col-12 text-center">
-                                    <h3 class="fw-bold p-2 rounded-2 "> Add Product</h3>
-                                </div>
-
-                            </div>
+                        <div class=" col-12 text-center">
+                            <h3 class="fw-bold p-2"> Add Product</h3>
                         </div>
 
-                        <div class=" col-12 col-lg-6 border border-1 border-black bg-white">
+                        <div class="col-12 col-lg-6 border-black border-end border-top border-bottom">
                             <!-- <div class=" row"> -->
 
                             <div class=" col-12 p-3">
@@ -88,7 +95,7 @@ if (isset($_SESSION["admin"])) {
                         </div>
 
                         <!-- <div class=" row"> -->
-                        <div class=" col-12 col-lg-6 border border-1 border-black bg-white">
+                        <div class="col-12 col-lg-6 p-3 border-top border-bottom border-black">
                             <label class="form-label fw-bold fs-4 ">Product Description</label>
                             <div class="col-12 pb-3">
                                 <textarea cols="30" rows="19" class=" form-control" id="desc"></textarea>
@@ -96,45 +103,31 @@ if (isset($_SESSION["admin"])) {
                         </div>
 
                         <!-- <div class=" row"> -->
-                        <div class=" col-12 border border-1 border-black">
+                        <div class=" col-12 p-3">
 
-                            <div class="col-12 text-center">
-                                <label class="form-label fw-bold fs-4">Product Images</label>
-                            </div>
-                        </div>
+                            <label class="form-label fw-bold fs-4">Product Images</label>
 
-                        <!-- <div class=" row"> -->
-                        <div class=" col-12 border border-1 border-black">
-
-                            <div class="col-12">
-
-                                <div class=" offset-md-3 col-12 col-lg-6 p-3">
-                                    <div class="row">
-
-                                        <div class=" col-12 col-lg-4 border border-primary">
-                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i0">
-                                        </div>
-                                        <div class=" col-12 col-lg-4 border border-primary">
-                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i1">
-                                        </div>
-                                        <div class=" col-12 col-lg-4 border border-primary">
-                                            <img src="resources/up.png" class="img-fluid" style="width: 250px;" id="i2">
-                                        </div>
-
-                                        <input type="file" id="pimg" multiple hidden>
+                            <!-- <div class=" row"> -->
+                            <div class=" col-12 border border-black d-flex justify-content-center">
+                                <div class=" row">
+                                    <div class=" col border">
+                                        <label for="pimg"><img src="resources/up.png" style="width: 250px; height: 250px; cursor:pointer" id="i0" onclick="changeProductImage();"></label>
+                                    </div>
+                                    <div class=" col border">
+                                        <label for="pimg"><img src="resources/up.png" style="width: 250px; height: 250px; cursor:pointer" id="i1" onclick="changeProductImage();"></label>
+                                    </div>
+                                    <div class=" col border">
+                                        <label for="pimg"><img src="resources/up.png" style="width: 250px; height: 250px; cursor:pointer" id="i2" onclick="changeProductImage();"></label>
                                     </div>
                                 </div>
 
+                                <input type="file" id="pimg" multiple hidden>
                             </div>
+
                         </div>
 
-                        <!-- <div class=" row"> -->
-                        <div class="col-12 text-center">
-                            <label class=" col-12 col-lg-4 form-label fs-5 fw-bold btn btn-info mt-2" for="pimg" onclick="changeProductImage();">Uploard Images</label>
-                        </div>
-
-                        <div class=" col-12 mt-4">
-                            <button class=" col-12 btn btn-success mb-4 " onclick="addproduct();"> Add Product </button>
+                        <div class=" col-12 d-flex justify-content-end mb-3">
+                            <button class="btn btn-success" onclick="addproduct();"> Add Product </button>
                         </div>
 
 

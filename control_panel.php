@@ -50,7 +50,7 @@ if (isset($_SESSION["admin"])) {
                                 </div>
 
                                 <div class=" col-12">
-                                    <button class=" col-12 btn btn-dark p-3 border border-danger fw-bold" onclick="window.location ='message.php'">Message</button>
+                                    <button class=" col-12 btn btn-dark p-3 border border-danger fw-bold" onclick="window.location ='message.php'">Reports</button>
                                 </div>
 
                                 <div class=" col-12">
