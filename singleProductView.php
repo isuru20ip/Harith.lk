@@ -47,7 +47,7 @@ if (isset($_GET["id"])) {
                     <?php require "header.php"; ?>
 
                     <!-- content -->
-                    <div class="col-12 p-md-3">
+                    <div class="col-12 p-md-3" id="basicSearchResult">
 
                         <div class="col-12 mt-1 ms-md-3 fw-bold mb-2">
                             <span><a href="index.php" class="text-decoration-none">Home > </a></span> <!-- --> 
