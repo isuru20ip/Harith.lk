@@ -1282,7 +1282,7 @@ function removeFeed(x) {
             if (r.status == 200 && r.readyState == 4) {
                 var t = r.responseText;
                 if (t == "Done") {
-                    window.location.reload();
+                    window.history.back();
                 } else {
                     alert(t);
                 }
