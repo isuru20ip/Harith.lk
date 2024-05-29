@@ -31,7 +31,7 @@ if (isset($_SESSION["admin"])) {
                 <!--main-->
 
 
-                <div class=" col-12">
+                <div class=" col-12 p-3">
                     <div class=" row">
 
                         <div class=" col-12 col-lg-2 py-5">
@@ -247,175 +247,54 @@ if (isset($_SESSION["admin"])) {
                                 }
                                 ?>
 
-                                <br />
+                                <div class=" col-12">
+                                    <div class="row">
 
-                                <div class="col-12 bg-white p-2 rounded-3 mb-3">
-                                    <div class="row g-2">
+                                        <table class="table table-bordered bg-primary border-white fs-4 fw-bold">
+                                            <thead>
+                                                <tr class=" bg-primary">
+                                                    <th scope="col">Description</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Income and loss</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class=" bg-info">
+                                                    <th scope="row">Today Selles</th>
+                                                    <td><?php echo $todaySells  ?></td>
+                                                    <td>Rs : <?php echo (number_format($todayIncome)); ?></td>
+                                                </tr>
+                                                <tr class=" bg-info">
+                                                    <th scope="row">This Month Selles</th>
+                                                    <td><?php echo $monthlySells ?></td>
+                                                    <td>Rs : <?php echo (number_format($monthlyIncome)); ?></td>
 
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-primary text-white text-center rounded rounded-bottom-0">
-                                                    <label class="fs-4 fw-bold">Description</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </tr>
+                                                <tr class=" bg-info">
+                                                    <th scope="row">Last Month Selles</th>
+                                                    <td><?php echo $lastMonthSells ?></td>
+                                                    <td>Rs : <?php echo (number_format($lastMonthIncome)) ?></td>
+                                                </tr>
 
+                                                <tr  class=" bg-danger-subtle">
+                                                    <th scope="row">Rejected Orders This Month</th>
+                                                    <td><?php echo $lostSellsThis ?></td>
+                                                    <td>(Rs: <?php echo (number_format($lostIncomeThis)) ?>)</td>
+                                                </tr>
 
-                                        <div class="col-4 px-1">
-                                            <div class="row">
-                                                <div class="col-12 bg-primary text-white text-center">
-                                                    <label class="fs-4 fw-bold">Quantity</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                <tr class=" bg-danger-subtle">
+                                                    <th scope="row">Rejected Orders Last Month</th>
+                                                    <td><?php echo $lostSellsLast ?></td>
+                                                    <td>(Rs: <?php echo (number_format($lostIncomeLast)) ?>)</td>
+                                                </tr>
 
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-primary text-white text-center rounded rounded-bottom-0">
-                                                    <label class="fs-4 fw-bold">Income and loss</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Today -->
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">Today Selles</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-green">
-                                                    <label class="fs-5 fw-bold p-2"><?php echo $todaySells  ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">Rs : <?php echo (number_format($todayIncome)); ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- this month -->
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">This Month Selles</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2"><?php echo $monthlySells ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">Rs : <?php echo (number_format($monthlyIncome)); ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <!-- last month sell -->
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">Last Month Selles</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2"><?php echo $lastMonthSells ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-green text-black">
-                                                    <label class="fs-5 fw-bold p-2">Rs : <?php echo (number_format($lastMonthIncome)) ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- This Month Lost -->
-                                        <div class="col-4 px-1 ">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2">Rejected Orders This Month</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2"><?php echo $lostSellsThis ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2">(Rs: <?php echo (number_format($lostIncomeThis)) ?>)</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Last Month Lost -->
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2">Rejected Orders Last Month</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2"><?php echo $lostSellsLast ?></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 text-black bg-lessred">
-                                                    <label class="fs-5 fw-bold p-2">(Rs: <?php echo (number_format($lostIncomeLast)) ?>)</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- break -->
-                                        <div class="col-12 px-1">
-                                            <div class="row g-0">
-                                                <div class="col-12 bg-black text-black text-center">
-                                                    <span class=" text-danger fw-bolder small"> *Note : All sales are generated according to delivered orders.</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                                <tr class="border-white">
+                                                    <th scope="row" colspan="3" class=" bg-black text-danger text-center">*Note : All sales are generated according to delivered orders.</th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
+
                                 </div>
 
                                 <!-- top-items -->
@@ -427,7 +306,7 @@ if (isset($_SESSION["admin"])) {
                                         </div>
 
                                         <div class="col-12 d-flex">
-                                            <div class="row g-3">
+                                            <div class="row">
 
                                                 <?php
                                                 $top_user_mail = Database::search("SELECT `user_email`, SUM(`total`) AS `total` FROM `invoice` GROUP BY `user_email` ORDER BY `total` DESC ");
@@ -437,8 +316,8 @@ if (isset($_SESSION["admin"])) {
                                                 ?>
 
                                                 <!-- card -->
-                                                
-                                                <div class="col-6 mb-2 border border-1 bg-body-tertiary rounded mx-1" style="width: 18rem;">
+
+                                                <div class=" col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded mx-1" style="width: 18rem;">
 
                                                     <?php
                                                     $img_rs = Database::search("SELECT * FROM `user_img` WHERE `user_email` = '" . $user_data["email"] . "'");
@@ -498,7 +377,7 @@ if (isset($_SESSION["admin"])) {
                                                 ?>
 
                                                 <!-- card -->
-                                                <div class="col-6 mb-2 border border-1 bg-body-tertiary rounded " style="width: 18rem;">
+                                                <div class="col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded " style="width: 18rem;">
 
                                                     <?php
                                                     $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
@@ -552,8 +431,8 @@ if (isset($_SESSION["admin"])) {
 
 
             </div>
-<script src="bootstrap.bundle.js"></script>
-<script src="script.js"></script>
+            <script src="bootstrap.bundle.js"></script>
+            <script src="script.js"></script>
     </body>
 
     </html>
