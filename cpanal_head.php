@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Contral Panal | AYUNA.lk | Enriching Age</title>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="icon" href="resources/favicon.svg">
-</head>
 
 <body>
 
