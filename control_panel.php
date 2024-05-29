@@ -50,10 +50,6 @@ if (isset($_SESSION["admin"])) {
                                 </div>
 
                                 <div class=" col-12">
-                                    <button class=" col-12 btn btn-dark p-3 border border-danger fw-bold" onclick="window.location ='message.php'">Reports</button>
-                                </div>
-
-                                <div class=" col-12">
                                     <button class=" col-12 btn btn-dark p-3 border border-danger fw-bold" onclick="window.location ='usermanage.php'">User Manage</button>
                                 </div>
 
@@ -247,6 +243,7 @@ if (isset($_SESSION["admin"])) {
                                 }
                                 ?>
 
+                                <!-- selles -->
                                 <div class=" col-12">
                                     <div class="row">
 
@@ -276,7 +273,7 @@ if (isset($_SESSION["admin"])) {
                                                     <td>Rs : <?php echo (number_format($lastMonthIncome)) ?></td>
                                                 </tr>
 
-                                                <tr  class=" bg-danger-subtle">
+                                                <tr class=" bg-danger-subtle">
                                                     <th scope="row">Rejected Orders This Month</th>
                                                     <td><?php echo $lostSellsThis ?></td>
                                                     <td>(Rs: <?php echo (number_format($lostIncomeThis)) ?>)</td>
@@ -421,6 +418,67 @@ if (isset($_SESSION["admin"])) {
                                     </div>
                                 </div>
                                 <!-- Top-Product -->
+
+                                <!-- reports -->
+
+                                <div class=" col-12 my-5">
+                                    <div class="row">
+
+                                        <table class="table table-bordered bg-primary border-white fs-4 fw-bold">
+                                            <thead>
+                                                <tr class=" bg-primary">
+                                                    <th scope="col">Reports</th>
+                                                    <th scope="col">Types</th>
+                                                    <th scope="col">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class=" bg-info">
+                                                    <td scope="row">Selles Reports</td>
+                                                    <td>
+                                                        <select class="form-select fw-bold" aria-label="Default select example">
+                                                            <option value="1" selected>Daily</option>
+                                                            <option value="2">Monthly</option>
+                                                            <option value="3">Anualiy</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+                                                </tr>
+                                                <tr class=" bg-info">
+                                                    <th scope="row">Product Reports</th>
+                                                    <td>
+                                                        <select class="form-select fw-bold" aria-label="Default select example">
+                                                            <option value="1" selected>All</option>
+                                                            <?php
+                                                            $cat_rs = Database::search("SELECT * FROM `category`");
+                                                            $cat_num = $cat_rs->num_rows;
+                                                            for ($i = 0; $i < $cat_num; $i++) {
+                                                                $cat_data = $cat_rs->fetch_assoc();
+                                                            ?>
+                                                                <option value="<?php echo $cat_data["id"];  ?>"><?php echo $cat_data["category_name"];  ?></option>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+
+                                                </tr>
+                                                <tr class=" bg-info">
+                                                    <th scope="row">User Reports</th>
+                                                    <td>
+                                                        <select class="form-select fw-bold" aria-label="Default select example">
+                                                            <option value="1" selected>User details</option>
+                                                            <option value="2">Purchase Report</option>
+                                                        </select>
+                                                    </td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
