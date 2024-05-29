@@ -25,7 +25,7 @@ if (isset($_SESSION["admin"])) {
         <div class=" container-fluid">
             <div class=" row">
 
-                <?php //require "cpanal_head.php";
+                <?php require "cpanal_head.php";
                 $st = $_GET["st"];
                 ?>
 
