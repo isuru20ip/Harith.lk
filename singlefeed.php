@@ -13,7 +13,7 @@ $fid = $_GET["id"];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Home | AYUNA.lk | Enriching Age</title>
+    <title>Feedback Read | AYUNA.lk | Enriching Age</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap.css">
