@@ -1428,7 +1428,7 @@ function getReport(report) {
             }
         }
     };
-    r.open("GET", "reportProcess.php?reportType=" + reportType, true);
+    r.open("GET", "reportProcess.php?reportType=" + reportType + "&&report="+report, true);
     r.send();
 }
 

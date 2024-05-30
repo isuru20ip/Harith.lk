@@ -450,14 +450,14 @@ if (isset($_SESSION["admin"])) {
                                                     <th scope="row">Product details Report</th>
                                                     <td>
                                                         <select class="form-select fw-bold" aria-label="Default select example" id="ProductReportType">
-                                                            <option value="p0" selected>All</option>
+                                                            <option value="0" selected>All</option>
                                                             <?php
                                                             $cat_rs = Database::search("SELECT * FROM `category`");
                                                             $cat_num = $cat_rs->num_rows;
                                                             for ($i = 0; $i < $cat_num; $i++) {
                                                                 $cat_data = $cat_rs->fetch_assoc();
                                                             ?>
-                                                                <option value="p<?php echo $cat_data["id"];  ?>"><?php echo $cat_data["category_name"];  ?></option>
+                                                                <option value="<?php echo $cat_data["id"];  ?>"><?php echo $cat_data["category_name"];  ?></option>
                                                             <?php
                                                             }
                                                             ?>
