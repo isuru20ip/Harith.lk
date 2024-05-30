@@ -1,7 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION["admin"])) {
-
+if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
     require "conection.php";
 
 ?>
