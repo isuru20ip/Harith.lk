@@ -1411,3 +1411,20 @@ function sendEmail(obj) {
         window.history.back();
     }
 }
+
+function getReport(report) {
+    var reportType = document.getElementById(report).value;
+    var r = new XMLHttpRequest();
+    r.onreadystatechange = function () {
+        if (r.readyState == 4 && r.status == 200) {
+            var t = r.responseText;
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write(t);
+            printWindow.document.close();
+            printWindow.print();
+        }
+    };
+    r.open("GET", "reportProcess.php?reportType=" + reportType, true);
+    r.send();
+}
+

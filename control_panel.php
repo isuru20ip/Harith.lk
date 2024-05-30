@@ -19,13 +19,14 @@ if (isset($_SESSION["admin"])) {
         <link rel="stylesheet" href="bootstrap.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link rel="icon" href="resources/favicon.svg">
+
     </head>
 
     <body class="bg-dark">
 
         <div class=" container-fluid ">
             <div class="row">
-                <?php require "cpanal_head.php";
+                <?php //require "cpanal_head.php";
                 ?>
 
                 <!--main-->
@@ -424,55 +425,56 @@ if (isset($_SESSION["admin"])) {
                                 <div class=" col-12 my-5">
                                     <div class="row">
 
-                                        <table class="table table-bordered bg-primary border-white fs-4 fw-bold">
+                                        <table class="table table-bordered bg-primary border-white fs-4 fw-bold" style="width: 100%;">
                                             <thead>
                                                 <tr class=" bg-primary">
-                                                    <th scope="col">Reports</th>
-                                                    <th scope="col">Types</th>
-                                                    <th scope="col">Actions</th>
+                                                    <th scope="col" style="width: 30%;">Reports</th>
+                                                    <th scope="col" style="width: 30%;">Types</th>
+                                                    <th scope="col" style="width: 20%;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class=" bg-info">
                                                     <td scope="row">Selles Reports</td>
                                                     <td>
-                                                        <select class="form-select fw-bold" aria-label="Default select example">
-                                                            <option value="1" selected>Daily</option>
-                                                            <option value="2">Monthly</option>
-                                                            <option value="3">Anualiy</option>
+                                                        <select class="form-select fw-bold" aria-label="Default select example" id="SellesReportType">
+                                                            <option value="s1" selected>Daily</option>
+                                                            <option value="s2">Monthly</option>
+                                                            <option value="s3">Anualiy</option>
                                                         </select>
                                                     </td>
-                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;" onclick="getReport('SellesReportType');">Print</span></td>
                                                 </tr>
+
                                                 <tr class=" bg-info">
-                                                    <th scope="row">Product Reports</th>
+                                                    <th scope="row">Product details Report</th>
                                                     <td>
-                                                        <select class="form-select fw-bold" aria-label="Default select example">
-                                                            <option value="1" selected>All</option>
+                                                        <select class="form-select fw-bold" aria-label="Default select example" id="ProductReportType">
+                                                            <option value="p0" selected>All</option>
                                                             <?php
                                                             $cat_rs = Database::search("SELECT * FROM `category`");
                                                             $cat_num = $cat_rs->num_rows;
                                                             for ($i = 0; $i < $cat_num; $i++) {
                                                                 $cat_data = $cat_rs->fetch_assoc();
                                                             ?>
-                                                                <option value="<?php echo $cat_data["id"];  ?>"><?php echo $cat_data["category_name"];  ?></option>
+                                                                <option value="p<?php echo $cat_data["id"];  ?>"><?php echo $cat_data["category_name"];  ?></option>
                                                             <?php
                                                             }
                                                             ?>
                                                         </select>
                                                     </td>
-                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;" onclick="getReport('ProductReportType');">Print</span></td>
 
                                                 </tr>
                                                 <tr class=" bg-info">
                                                     <th scope="row">User Reports</th>
                                                     <td>
-                                                        <select class="form-select fw-bold" aria-label="Default select example">
-                                                            <option value="1" selected>User details</option>
-                                                            <option value="2">Purchase Report</option>
+                                                        <select class="form-select fw-bold" aria-label="Default select example" id="userReport">
+                                                            <option value="u1" selected>User details</option>
+                                                            <option value="u2">Purchase Report</option>
                                                         </select>
                                                     </td>
-                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;">Print</span></td>
+                                                    <td><span class=" text-decoration-underline" style="cursor: pointer;" onclick="getReport('userReport');">Print</span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -489,6 +491,7 @@ if (isset($_SESSION["admin"])) {
 
 
             </div>
+            
             <script src="bootstrap.bundle.js"></script>
             <script src="script.js"></script>
     </body>
