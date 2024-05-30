@@ -23,6 +23,7 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Report</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap.css">
         <link rel="icon" href="resources/favicon.svg">
         <style>
             body {
@@ -102,7 +103,7 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                         if ($type == 'u1') {
                                             echo ("emal & phone");
                                         } elseif ($type == 'u2') {
-                                            echo ("emal");
+                                            echo ("email");
                                         }
                                     }
                                     ?>
@@ -204,8 +205,8 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                     GROUP BY
                                    invoice.product_id, product.title, product.price;");
 
-                                   $total_income = 0;
-                                   $total_item_sells = 0;
+                                $total_income = 0;
+                                $total_item_sells = 0;
 
                                 $Sell_num = $Sell_rs->num_rows;
                                 for ($i = 0; $i < $Sell_num; $i++) {
@@ -232,7 +233,101 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                     <td>Items: <?php echo $total_item_sells ?> sold</td>
                                     <td>Rs: <?php echo $total_income ?> </td>
                                 </tr>
+                                <?php
+                            } elseif ($report == 'ProductReportType') {
+                                $query = 'SELECT * FROM `product`';
+                                if ($type != 0) {
+                                    $query .= "WHERE `category_id` = '" . $type . "'";
+                                }
+                                $productReport_rs = Database::search($query);
+                                $productReport_num = $productReport_rs->num_rows;
+
+                                if ($productReport_num == 0) {
+                                ?>
+                                    <tr>
+                                        <td colspan="6" class=" fw-bold text-center fs-2">No Product Yet </td>
+                                    </tr>
+                                <?php
+                                }
+
+                                for ($i = 0; $i < $productReport_num; $i++) {
+                                    $productReport_data = $productReport_rs->fetch_assoc();
+                                    $ptsells = Database::search("SELECT SUM(`iqty`) AS tsell FROM `invoice` WHERE invoice.product_id = " . $productReport_data["id"] . "");
+                                    $ptsells_data = $ptsells->fetch_assoc();
+                                    $pcat = Database::search("SELECT `category_name` FROM `category` WHERE `id` ='" . $productReport_data["category_id"] . "'");
+                                    $pcat_data = $pcat->fetch_assoc();
+
+                                ?>
+
+                                    <tr>
+                                        <td><?php echo $i + 1 ?></td>
+                                        <td><?php echo $productReport_data["title"] ?> <br> (Pid : <?php echo $productReport_data["id"] ?>)</td>
+                                        <td><?php echo $pcat_data["category_name"] ?></td>
+                                        <td>Rs: <?php echo $productReport_data["price"] ?></td>
+                                        <td>Items: <?php echo $productReport_data["qty"] ?></td>
+                                        <td>Items: <?php echo $ptsells_data["tsell"] ?></td>
+                                    </tr>
+
+                                    <?php
+                                }
+                            } elseif ($report == 'userReport') {
+
+                                $userD_rs = Database::search("SELECT * FROM `user`");
+                                $userD_num = $userD_rs->num_rows;
+                                for ($i = 0; $i < $userD_num; $i++) {
+                                    $userD_data = $userD_rs->fetch_assoc();
+
+                                    if ($type == 'u1') {
+                                        $address = Database::search("SELECT address.line_1,address.line_2,city.city_name,district.district_name FROM `address`
+                                            INNER JOIN `city` ON city.city_id = address.city_id
+                                            INNER JOIN `district` ON district.district_id = city.district_id
+                                            WHERE address.user_email = '" . $userD_data["email"] . "'");
+                                        $address_data = $address->fetch_assoc();
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i + 1 ?></td>
+                                            <td> <?php echo $userD_data["email"]; ?><br><?php echo $userD_data["contact_no"]; ?></td>
+                                            <td>
+                                                <?php echo $userD_data["fname"]; ?>
+                                                <?php echo $userD_data["lname"]; ?>
+                                                <br>
+                                                <?php
+                                                if ($userD_data["user_type_id"] == 1) {
+                                                ?>( <?php echo ("Admin") ?> )<?php
+                                                                            } ?>
+                                            </td>
+                                            <td><?php echo $address_data["line_1"]; ?> <?php echo $address_data["line_2"]; ?> <br> <?php echo $address_data["city_name"]; ?> <br> <?php echo $address_data["district_name"]; ?></td>
+                                            <td><?php echo $userD_data["join_date"]; ?></td>
+                                            <td>
+                                                <?php if ($userD_data["status"] == 1) {
+                                                    echo ("Active");
+                                                } else {
+                                                    echo ("Inative");
+                                                } ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    } elseif ($type == 'u2') {
+                                        $uact_rs = Database::search("SELECT SUM(`iqty`) AS tqty , SUM(`total`) AS tp  FROM `invoice` WHERE invoice.user_email = '" . $userD_data["email"] . "'");
+                                        $uact_data = $uact_rs->fetch_assoc();
+
+                                        $mp_rs = Database::search("SELECT product.title,category.category_name, product_id,SUM(`iqty`) AS tq FROM invoice
+                                        INNER JOIN product ON invoice.product_id = product.id
+                                        INNER JOIN category ON category.id = product.category_id
+                                         WHERE invoice.user_email ='". $userD_data["email"]."' GROUP BY product_id ORDER BY `tq` DESC LIMIT 1");
+                                         $mp_data = $mp_rs -> fetch_assoc();
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i + 1 ?></td>
+                                            <td> <?php echo $userD_data["email"]; ?></td>
+                                            <td><?php echo $uact_data["tqty"]; ?> Items</td>
+                                            <td>Rs: <?php echo $uact_data["tp"]; ?></td>
+                                            <td><?php echo $mp_data["category_name"]; ?></td>
+                                            <td><?php echo $mp_data["title"]; ?></td>
+                                        </tr>
                             <?php
+                                    }
+                                }
                             }
                             ?>
                             <!-- <tr>
