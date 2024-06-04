@@ -14,7 +14,6 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
 
 ?>
 
-
     <!DOCTYPE html>
     <html lang="en">
 
@@ -181,7 +180,7 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                 if ($type == 's1') {
                                     $date = $today;
                                     $fomat = '%Y-%m-%d';
-                                    echo ("ff");
+                                    
                                 } elseif ($type == 's2') {
                                     $date = $thisMonth;
                                     $fomat = '%Y-%m';
