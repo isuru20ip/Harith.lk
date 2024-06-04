@@ -109,9 +109,9 @@ require "conection.php";
                                             <td><?php echo $i + 1 ?></td>
                                             <td><?php echo $product_data["title"]; ?></td>
                                             <td><?php echo $product_data["product_id"]; ?></td>
-                                            <td><?php echo $invoice_data_data["iqty"]; ?></td>
-                                            <td>LKR : <?php echo $product_data["price"]; ?></td>
-                                            <td>LKR : <?php echo $total; ?></td>
+                                            <td><?php echo number_format($invoice_data_data["iqty"]); ?></td>
+                                            <td>LKR : <?php echo number_format($product_data["price"]); ?></td>
+                                            <td>LKR : <?php echo number_format($total); ?></td>
                                         </tr>
 
                                     <?php
@@ -132,7 +132,7 @@ require "conection.php";
                                         <th colspan="1"></th>
                                         <th colspan="1"></th>
                                         <th class=" border-1 border-black">Sub Total</th>
-                                        <th width="140" class=" border-1 border-black">LKR : <?php echo $subtal; ?></th>
+                                        <th width="140" class=" border-1 border-black">LKR : <?php echo number_format($subtal); ?></th>
                                     </tr>
 
                                     <tr>
@@ -141,7 +141,7 @@ require "conection.php";
                                         <th colspan="1"></th>
                                         <th colspan="1"></th>
                                         <th class=" border-1 border-black">Delivary Fee</th>
-                                        <th width="140" class=" border-1 border-black">LKR : <?php echo $shipping; ?></th>
+                                        <th width="140" class=" border-1 border-black">LKR : <?php echo number_format($shipping); ?></th>
                                     </tr>
 
                                     <tr>
@@ -150,7 +150,7 @@ require "conection.php";
                                         <th colspan="1"></th>
                                         <th colspan="1"></th>
                                         <th class=" border-1 border-black">Grand Total</th>
-                                        <th width="140" class=" border-1 border-black">LKR: <?php echo $gtotal; ?></th>
+                                        <th width="140" class=" border-1 border-black">LKR: <?php echo number_format($gtotal); ?></th>
                                     </tr>
 
                                 </table>

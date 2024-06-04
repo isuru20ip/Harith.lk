@@ -200,7 +200,7 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                    `invoice`
                                     INNER JOIN
                                    `product` ON product.id = invoice.product_id
-                                    WHERE
+                                   WHERE invoice.status = '2' AND 
                                    DATE_FORMAT(invoice.date, '" . $fomat . "') = '" . $date . "'
                                     GROUP BY
                                    invoice.product_id, product.title, product.price;");
@@ -219,9 +219,9 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                         <td><?php echo $i + 1 ?></td>
                                         <td><?php echo $dailySell_data["product_id"]; ?></td>
                                         <td><?php echo $dailySell_data["title"]; ?></td>
-                                        <td>Rs: <?php echo $dailySell_data["price"]; ?></td>
-                                        <td><?php echo $dailySell_data["total_qty"]; ?></td>
-                                        <td>Rs:<?php echo $dailySell_data["total_amount"]; ?></td>
+                                        <td>Rs: <?php echo (number_format($dailySell_data["price"]))  ?></td>
+                                        <td><?php echo (number_format($dailySell_data["total_qty"])) ?></td>
+                                        <td>Rs:<?php echo (number_format($dailySell_data["total_amount"])) ?></td>
                                     </tr>
                                 <?php
                                 }
@@ -230,8 +230,8 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                 <tr>
 
                                     <td colspan="4">Summary</td>
-                                    <td>Items: <?php echo $total_item_sells ?> sold</td>
-                                    <td>Rs: <?php echo $total_income ?> </td>
+                                    <td>Items: <?php echo number_format($total_item_sells) ?> sold</td>
+                                    <td>Rs: <?php echo number_format($total_income) ?> </td>
                                 </tr>
                                 <?php
                             } elseif ($report == 'ProductReportType') {
@@ -252,7 +252,7 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
 
                                 for ($i = 0; $i < $productReport_num; $i++) {
                                     $productReport_data = $productReport_rs->fetch_assoc();
-                                    $ptsells = Database::search("SELECT SUM(`iqty`) AS tsell FROM `invoice` WHERE invoice.product_id = " . $productReport_data["id"] . "");
+                                    $ptsells = Database::search("SELECT SUM(`iqty`) AS tsell FROM `invoice` WHERE invoice.status = '2' AND invoice.product_id = " . $productReport_data["id"] . "");
                                     $ptsells_data = $ptsells->fetch_assoc();
                                     $pcat = Database::search("SELECT `category_name` FROM `category` WHERE `id` ='" . $productReport_data["category_id"] . "'");
                                     $pcat_data = $pcat->fetch_assoc();
@@ -263,9 +263,9 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                         <td><?php echo $i + 1 ?></td>
                                         <td><?php echo $productReport_data["title"] ?> <br> (Pid : <?php echo $productReport_data["id"] ?>)</td>
                                         <td><?php echo $pcat_data["category_name"] ?></td>
-                                        <td>Rs: <?php echo $productReport_data["price"] ?></td>
-                                        <td>Items: <?php echo $productReport_data["qty"] ?></td>
-                                        <td>Items: <?php echo $ptsells_data["tsell"] ?></td>
+                                        <td>Rs: <?php echo number_format($productReport_data["price"]) ?></td>
+                                        <td>Items: <?php echo number_format($productReport_data["qty"]) ?></td>
+                                        <td>Items: <?php echo number_format($ptsells_data["tsell"]) ?></td>
                                     </tr>
 
                                     <?php
@@ -283,6 +283,20 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                             INNER JOIN `district` ON district.district_id = city.district_id
                                             WHERE address.user_email = '" . $userD_data["email"] . "'");
                                         $address_data = $address->fetch_assoc();
+                                        $address_num = $address->num_rows;
+
+                                        $line1U = "No Address added";
+                                        $line2U = "";
+                                        $cityU = "";
+                                        $districtU = "";
+
+                                        if ($address_num >= 1) {
+                                            $line1U = $address_data["line_1"];
+                                            $line2U = $address_data["line_2"];
+                                            $cityU = $address_data["city_name"];
+                                            $districtU = $address_data["district_name"];
+                                        }
+
                                     ?>
                                         <tr>
                                             <td><?php echo $i + 1 ?></td>
@@ -293,10 +307,11 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                                 <br>
                                                 <?php
                                                 if ($userD_data["user_type_id"] == 1) {
+
                                                 ?>( <?php echo ("Admin") ?> )<?php
                                                                             } ?>
                                             </td>
-                                            <td><?php echo $address_data["line_1"]; ?> <?php echo $address_data["line_2"]; ?> <br> <?php echo $address_data["city_name"]; ?> <br> <?php echo $address_data["district_name"]; ?></td>
+                                            <td><?php echo $line1U ?> <?php echo $line2U ?> <br> <?php echo $cityU ?> <br> <?php echo $districtU ?></td>
                                             <td><?php echo $userD_data["join_date"]; ?></td>
                                             <td>
                                                 <?php if ($userD_data["status"] == 1) {
@@ -308,22 +323,31 @@ if (isset($_SESSION["admin"]) && isset($_GET["reportType"])) {
                                         </tr>
                                     <?php
                                     } elseif ($type == 'u2') {
-                                        $uact_rs = Database::search("SELECT SUM(`iqty`) AS tqty , SUM(`total`) AS tp  FROM `invoice` WHERE invoice.user_email = '" . $userD_data["email"] . "'");
+                                        $uact_rs = Database::search("SELECT SUM(`iqty`) AS tqty , SUM(`total`) AS tp  FROM `invoice` WHERE invoice.status = '2' AND invoice.user_email = '" . $userD_data["email"] . "'");
                                         $uact_data = $uact_rs->fetch_assoc();
 
                                         $mp_rs = Database::search("SELECT product.title,category.category_name, product_id,SUM(`iqty`) AS tq FROM invoice
                                         INNER JOIN product ON invoice.product_id = product.id
                                         INNER JOIN category ON category.id = product.category_id
-                                         WHERE invoice.user_email ='". $userD_data["email"]."' GROUP BY product_id ORDER BY `tq` DESC LIMIT 1");
-                                         $mp_data = $mp_rs -> fetch_assoc();
+                                         WHERE invoice.user_email ='" . $userD_data["email"] . "' GROUP BY product_id ORDER BY `tq` DESC LIMIT 1");
+                                        $mp_num = $mp_rs->num_rows;
+                                        $mp_data = $mp_rs->fetch_assoc();
+                                        $fcat = 'No Item Found';
+                                        $fp = 'No Item Found';
+
+                                        if ($mp_num >= 1) {
+                                            $fcat = $mp_data["category_name"];
+                                            $fp =  $mp_data["title"];
+                                        }
+
                                     ?>
                                         <tr>
                                             <td><?php echo $i + 1 ?></td>
                                             <td> <?php echo $userD_data["email"]; ?></td>
-                                            <td><?php echo $uact_data["tqty"]; ?> Items</td>
-                                            <td>Rs: <?php echo $uact_data["tp"]; ?></td>
-                                            <td><?php echo $mp_data["category_name"]; ?></td>
-                                            <td><?php echo $mp_data["title"]; ?></td>
+                                            <td><?php echo number_format($uact_data["tqty"]) ?> Items</td>
+                                            <td>Rs: <?php echo number_format( $uact_data["tp"]) ?></td>
+                                            <td><?php echo $fcat ?></td>
+                                            <td><?php echo $fp ?></td>
                                         </tr>
                             <?php
                                     }

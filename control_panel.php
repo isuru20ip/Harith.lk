@@ -26,16 +26,16 @@ if (isset($_SESSION["admin"])) {
 
         <div class=" container-fluid ">
             <div class="row">
-                <?php //require "cpanal_head.php";
+                <?php require "cpanal_head.php";
                 ?>
 
                 <!--main-->
 
 
-                <div class=" col-12 p-3">
+                <div class=" col-12 py-3">
                     <div class=" row">
 
-                        <div class=" col-12 col-lg-2 py-5">
+                        <div class=" col-12 col-lg-2 pb-5 pt-3">
                             <div class=" row g-3 mx-auto">
 
                                 <div class=" col-12">
@@ -66,7 +66,7 @@ if (isset($_SESSION["admin"])) {
                             </div>
                         </div>
 
-                        <div class="col-12 col-lg-10 mt-5">
+                        <div class="col-12 col-lg-10 ">
                             <div class="row">
 
                                 <div class="text-white fw-bold mb-1 mt-3">
@@ -218,6 +218,7 @@ if (isset($_SESSION["admin"])) {
                                             $todaySells = (($todaySells) + ($invoice_data["iqty"]));
                                         }
                                     }
+
                                     if ($thisMonth == $inMonth) {
                                         if ($invoice_data["status"] == 2) {
                                             $monthlyIncome = (($monthlyIncome) + ($invoice_data["total"]));
@@ -229,6 +230,7 @@ if (isset($_SESSION["admin"])) {
                                             $lostSellsThis = (($lostSellsThis) + ($invoice_data["iqty"]));
                                         }
                                     }
+echo($inMonth);
                                     if ($last_month == $inMonth) {
                                         if ($invoice_data["status"] == 2) {
                                             $lastMonthIncome = (($lastMonthIncome) + ($invoice_data["total"]));
@@ -310,109 +312,121 @@ if (isset($_SESSION["admin"])) {
                                                 $top_user_mail = Database::search("SELECT `user_email`, SUM(`total`) AS `total` FROM `invoice` GROUP BY `user_email` ORDER BY `total` DESC ");
                                                 $top_user_mail_data = $top_user_mail->fetch_assoc();
                                                 $select_rs = Database::search("SELECT * FROM `user` WHERE `email` = '" . $top_user_mail_data["user_email"] . "' ");
+                                                $select_num = $select_rs->num_rows;
                                                 $user_data = $select_rs->fetch_assoc();
+
+                                                if ($select_num >= 1) {
+                                                ?>
+                                                    <div class=" col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded mx-1" style="width: 18rem;">
+
+                                                        <?php
+                                                        $img_rs = Database::search("SELECT * FROM `user_img` WHERE `user_email` = '" . $user_data["email"] . "'");
+                                                        $img_num = $img_rs->num_rows;
+                                                        $img_data = $img_rs->fetch_assoc();
+
+                                                        if ($img_num == 1) {
+                                                        ?>
+                                                            <img src="<?php echo $img_data["path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <img src="resources/user.svg" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                        <div class="card-body p-3">
+
+                                                            <div class="col-12 text-center mt-3 text-bg-info">
+                                                                <span class=" fw-bold text-dark p-1 "><?php echo $user_data["email"]; ?></span>
+                                                            </div>
+
+                                                            <div class=" col-12 text-start ms-4 mt-1">
+                                                                <span class=" fw-bold text-dark p-1">Phone- <?php echo $user_data["contact_no"]; ?></span>
+                                                            </div>
+
+                                                            <div class=" col-12 text-start ms-4 mt-1">
+                                                                <span class=" fw-bold text-dark p-1 ">Join Date- <?php echo $user_data["join_date"]; ?></span>
+                                                            </div>
+
+                                                            <div class=" col-12 text-center mt-1">
+
+                                                                <?php
+                                                                if ($user_data["status"] == 2) {
+                                                                ?>
+                                                                    <span class=" fw-bold text-decoration-none text-danger fs-6 p-1 ">Blocked</span>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <span class=" fw-bold text-decoration-none text-success fs-6 p-1 ">Active</span>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+                                                            </div>
+                                                            <div class=" col-12 text-center mt-3">
+                                                                <a href="singleuser.php?e=<?php echo urlencode($user_data['email']); ?>" class=" col-12 btn btn-outline-warning border-3 fw-bold text-black">View</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                                }
                                                 ?>
 
                                                 <!-- card -->
 
-                                                <div class=" col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded mx-1" style="width: 18rem;">
 
-                                                    <?php
-                                                    $img_rs = Database::search("SELECT * FROM `user_img` WHERE `user_email` = '" . $user_data["email"] . "'");
-                                                    $img_num = $img_rs->num_rows;
-                                                    $img_data = $img_rs->fetch_assoc();
-
-                                                    if ($img_num == 1) {
-                                                    ?>
-                                                        <img src="<?php echo $img_data["path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <img src="resources/user.svg" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                    <div class="card-body p-3">
-
-                                                        <div class="col-12 text-center mt-3 text-bg-info">
-                                                            <span class=" fw-bold text-dark p-1 "><?php echo $user_data["email"]; ?></span>
-                                                        </div>
-
-                                                        <div class=" col-12 text-start ms-4 mt-1">
-                                                            <span class=" fw-bold text-dark p-1">Phone- <?php echo $user_data["contact_no"]; ?></span>
-                                                        </div>
-
-                                                        <div class=" col-12 text-start ms-4 mt-1">
-                                                            <span class=" fw-bold text-dark p-1 ">Join Date- <?php echo $user_data["join_date"]; ?></span>
-                                                        </div>
-
-                                                        <div class=" col-12 text-center mt-1">
-
-                                                            <?php
-                                                            if ($user_data["status"] == 2) {
-                                                            ?>
-                                                                <span class=" fw-bold text-decoration-none text-danger fs-6 p-1 ">Blocked</span>
-                                                            <?php
-                                                            } else {
-                                                            ?>
-                                                                <span class=" fw-bold text-decoration-none text-success fs-6 p-1 ">Active</span>
-                                                            <?php
-                                                            }
-                                                            ?>
-
-                                                        </div>
-                                                        <div class=" col-12 text-center mt-3">
-                                                            <a href="singleuser.php?e=<?php echo urlencode($user_data['email']); ?>" class=" col-12 btn btn-outline-warning border-3 fw-bold text-black">View</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                                 <?php
                                                 $product_rs = Database::search("SELECT `product_id`, SUM(`iqty`) AS `qty` FROM `invoice` GROUP BY `product_id` ORDER BY `qty` DESC");
                                                 $top_rs = $product_rs->fetch_assoc();
                                                 $select_rs = Database::search("SELECT * FROM `product` WHERE `id` = '" . $top_rs['product_id'] . "'");
                                                 $product_data = $select_rs->fetch_assoc();
+                                                $select_num = $select_rs->num_rows;
+
+                                                if ($select_num >= 1) {
                                                 ?>
 
-                                                <!-- card -->
-                                                <div class="col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded " style="width: 18rem;">
+                                                    <div class="col-12 col-lg-6 mb-2 border border-1 bg-body-tertiary rounded " style="width: 18rem;">
 
-                                                    <?php
-                                                    $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
-                                                    $img_data = $img_rs->fetch_assoc();
-                                                    ?>
+                                                        <?php
+                                                        $img_rs = Database::search("SELECT * FROM `p_img` WHERE `product_id` = '" . $product_data["id"] . "'");
+                                                        $img_data = $img_rs->fetch_assoc();
+                                                        ?>
 
-                                                    <img src="<?php echo $img_data["p_path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
-                                                    <div class="card-body p-3">
+                                                        <img src="<?php echo $img_data["p_path"]; ?>" class="card-img-top img-thumbnail mt-2 border-0" style="height: 300px;" />
+                                                        <div class="card-body p-3">
 
-                                                        <div class=" col-12 text-center mt-3">
-                                                            <span class=" fw-bold text-decoration-none text-dark p-1 "><?php echo $product_data["title"]; ?></span>
+                                                            <div class=" col-12 text-center mt-3">
+                                                                <span class=" fw-bold text-decoration-none text-dark p-1 "><?php echo $product_data["title"]; ?></span>
+                                                            </div>
+
+                                                            <div class=" col-12 text-center">
+                                                                <span class="card-text text-danger fw-bold">LKR.<?php echo $product_data["price"]; ?>.00</span> &nbsp; <span class="card-text text-danger fw-bold">(Qty:<?php echo $product_data["qty"]; ?>)</span><br />
+                                                            </div>
+
+                                                            <div class=" col-12 text-center mt-3">
+                                                                <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" onclick="deleteProduct(<?php echo $product_data['id']; ?>)">Delate</a>
+                                                                <a href="<?php echo "updateproduct.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold" onclick="sendId(<?php echo $product_data['id']; ?>);">Update</a>
+                                                            </div>
+
+                                                            <div class=" col-12 mt-3 text-center form-switch">
+                                                                <input class="form-check-input" type="checkbox" role="switch" id="fd<?php echo $product_data["id"]; ?>" onchange="changeStatus(<?php echo $product_data['id']; ?>);" <?php if ($product_data["status_status_id"] == 2) { ?> checked <?php } ?> />
+                                                                <?php
+                                                                if ($product_data["status_status_id"] == 1) {
+                                                                ?><label class="form-check-label fw-bold text-primary"> Active </label><?php
+                                                                            } else {
+                                                                                ?><label class="form-check-label fw-bold text-danger"> Deactivate </label><?php
+                                                                                                                                                        }
+                                                                                                                                                            ?>
+
+                                                            </div>
+
                                                         </div>
-
-                                                        <div class=" col-12 text-center">
-                                                            <span class="card-text text-danger fw-bold">LKR.<?php echo $product_data["price"]; ?>.00</span> &nbsp; <span class="card-text text-danger fw-bold">(Qty:<?php echo $product_data["qty"]; ?>)</span><br />
-                                                        </div>
-
-                                                        <div class=" col-12 text-center mt-3">
-                                                            <a href="#" class=" col-5 btn btn-outline-danger border-3 fw-bold" onclick="deleteProduct(<?php echo $product_data['id']; ?>)">Delate</a>
-                                                            <a href="<?php echo "updateproduct.php?id=" . ($product_data["id"]); ?>" class="col-5 btn btn-outline-success border-3 fw-bold" onclick="sendId(<?php echo $product_data['id']; ?>);">Update</a>
-                                                        </div>
-
-                                                        <div class=" col-12 mt-3 text-center form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="fd<?php echo $product_data["id"]; ?>" onchange="changeStatus(<?php echo $product_data['id']; ?>);" <?php if ($product_data["status_status_id"] == 2) { ?> checked <?php } ?> />
-                                                            <?php
-                                                            if ($product_data["status_status_id"] == 1) {
-                                                            ?><label class="form-check-label fw-bold text-primary"> Active </label><?php
-                                                                                                                                } else {
-                                                                                                                                    ?><label class="form-check-label fw-bold text-danger"> Deactivate </label><?php
-                                                                                                                                                                                                            }
-                                                                                                                                                                                                                ?>
-
-                                                        </div>
-
                                                     </div>
-                                                </div>
-                                                <!-- card -->
+
+                                                <?php
+                                                }
+                                                ?>
 
                                             </div>
                                         </div>
@@ -491,7 +505,7 @@ if (isset($_SESSION["admin"])) {
 
 
             </div>
-            
+
             <script src="bootstrap.bundle.js"></script>
             <script src="script.js"></script>
     </body>
