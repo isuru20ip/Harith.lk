@@ -14,7 +14,7 @@ if (empty($admin)) {
     echo ("Name must have less than 45 Charactres.");
 } elseif (empty($password)) {
     echo ("Please enter your password");
-} elseif (strlen($password) < 3 || strlen($password) > 20) {
+} elseif (strlen($password) < 5 || strlen($password) > 20) {
     echo ("password should be between 20 and 5 characters");
 } else {
 

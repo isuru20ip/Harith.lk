@@ -6,7 +6,6 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $rm = $_POST["rememberme"];
 
-
 if (empty($email)) {
     echo ("Please enter your email");
 } elseif (strlen($email) > 100) {
@@ -24,30 +23,22 @@ if (empty($email)) {
         echo('error occurs <a href="Log_in.php">Try Again</a>');
         die;
     }
-   
     $user_count = $user_rs->num_rows;
-
     if ($user_count == 1) {
         $d = $user_rs->fetch_assoc();
-
         if ($d["status"] == 2) {
             echo("Your Account has been Blocked");
         } else {
             $_SESSION["user"] = $d;
 
             if ($_SESSION["user"]["user_type_id"] == '1') {
-
                 echo ("admin");
             } elseif ($_SESSION["user"]["user_type_id"] == '2') {
-
                 echo ("costomer");
             } else {
-
                 echo ("bad");
             }
-
             if ($rm == "true") {
-
                 setcookie("email", $email, time() + 60 * 60 * 24 * 365);
                 setcookie("password", $password, time() + 60 * 60 * 24 * 365);
             } else {
@@ -56,7 +47,6 @@ if (empty($email)) {
             }
         }
     } else {
-
         echo ("invalid Email Address or Password");
     }
 }

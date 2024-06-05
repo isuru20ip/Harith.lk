@@ -146,20 +146,13 @@ function vcode() {
     document.getElementById("sbtn").className = "d-none";
 
     var r = new XMLHttpRequest();
-
     r.onreadystatechange = function () {
         if (r.readyState == 4 && r.status == 200) {
             var t = r.responseText;
-
             if (t == "Good") {
-
                 document.getElementById("msg").innerHTML = "Verification Code Sent";
                 document.getElementById("sbtn").className = "d-block btn btn-success col-12 text-center fw-bold";
-
-
-
             } if (t !== "Good") {
-
                 document.getElementById("msg").innerHTML = t;
                 document.getElementById("msg").className = "alert alert-danger";
                 document.getElementById("msgdiv").className = "col-12 d-block";
@@ -167,13 +160,10 @@ function vcode() {
                 document.getElementById("vc").className = " btn btn-success col-12 text-center fw-bold ";
                 document.getElementById("sbtn").className = "d-block btn btn-success col-12 text-center fw-bold";
             }
-
         }
     }
-
     r.open("GET", "forgetpasswordprocess.php?e=" + email, true);
     r.send();
-
 }
 
 // reset Password
@@ -223,10 +213,8 @@ function resetPs() {
                 document.getElementById("msg").innerHTML = t;
             }
 
-
         }
     }
-
     r.open("POST", "resetpaaswordProcess.php", true);
     r.send(f);
 
