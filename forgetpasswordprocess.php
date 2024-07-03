@@ -30,22 +30,22 @@ if (empty($email)) {
         $mail->IsSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'all.test.free.mail@gmail.com';
-        $mail->Password = 'gjhl mkyt hwca uotg';
+        $mail->Username = 'Your email';
+        $mail->Password = 'app password';
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
-        $mail->setFrom('all.test.free.mail@gmail.com', 'Ayuna.lk');
-        $mail->addReplyTo('all.test.free.mail@gmail.com', 'Reset Password');
+        $mail->setFrom('Your email', 'text');
+        $mail->addReplyTo('Your email', 'Reset Password');
         $mail->addAddress($email);
         $mail->isHTML(true);
-        $mail->Subject = 'Forgot Password Verification Code';
-        $bodyContent = '<h1 style="color:green;">Your verification code is ' . $code . '</h1>';
+        $mail->Subject = 'Title';
+        $bodyContent = 'content';
         $mail->Body    = $bodyContent;
 
         if (!$mail->send()) {
             echo ("Verification Code Sending Failed.");
         } else {
-            echo ("Good");
+            echo ("Verification Code Sending Success.");
             
         }
     } else {

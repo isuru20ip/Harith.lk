@@ -27,12 +27,12 @@ if ($user_count == 1) {
     $mail->IsSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'all.test.free.mail@gmail.com';
-    $mail->Password = 'gjhl mkyt hwca uotg';
+    $mail->Username = 'Your email';
+    $mail->Password = 'app password';
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465;
-    $mail->setFrom('all.test.free.mail@gmail.com', 'Ayuna.lk');
-    $mail->addReplyTo('all.test.free.mail@gmail.com', 'Reset Password');
+    $mail->setFrom('Your email', 'Text');
+    $mail->addReplyTo('Your email', 'Text');
     $mail->addAddress($email);
     $mail->isHTML(true);
     $mail->Subject = $tile;
