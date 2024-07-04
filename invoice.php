@@ -8,7 +8,7 @@ require "conection.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Invoice | Haritha.lk | Enriching Age</title>
+    <title>Invoice | AYUNA.lk | Enriching Age</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="bootstrap.css">
